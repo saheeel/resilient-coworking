@@ -6,8 +6,7 @@ export default function Footer() {
       <div className="container">
         <div className="footer-top">
           <div className="footer-brand">
-            <img src="/reslinent.svg" alt="Resilient Mark" className="footer-mark" />
-            <h3 style={{ marginTop: '1rem' }}>Resilient Studios</h3>
+            <img src="/resilientlogo.png" alt="Resilient Coworking" className="footer-mark" style={{ height: '60px', width: 'auto', marginBottom: '1.5rem', filter: 'brightness(0) invert(1)' }} />
             <p>Just 2 minutes from the Lake Zurich promenade and 5 minutes from Stadelhofen station.</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', marginTop: '2rem' }}>
               <span style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'rgba(255,255,255,0.7)' }}>
