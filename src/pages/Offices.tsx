@@ -4,6 +4,8 @@ import { ArrowRight, Building, Mail, Building2, ShieldCheck, Wifi, Coffee, Star,
 import { Link } from 'react-router-dom';
 
 export default function Offices() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const officeImages = [
     '/private-office/IMG_1831-HDR.jpg',
     '/private-office/IMG_3948-HDR.jpg',
@@ -152,6 +154,60 @@ export default function Offices() {
       </motion.div>
     );
   };
+
+  const StatusModal = () => (
+    <AnimatePresence>
+      {isModalOpen && (
+        <div style={{ position: 'fixed', inset: 0, zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
+          <motion.div 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsModalOpen(false)}
+            style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)' }} 
+          />
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            style={{ 
+              position: 'relative', 
+              backgroundColor: 'var(--color-bg-white)', 
+              padding: 'clamp(2rem, 5vw, 3rem)', 
+              borderRadius: '32px', 
+              maxWidth: '500px', 
+              width: '100%',
+              textAlign: 'center',
+              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+            }}
+          >
+            <div style={{ color: 'var(--color-accent-terra)', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center' }}>
+              <Building2 size={48} strokeWidth={1.5} />
+            </div>
+            <h3 style={{ fontSize: '2rem', color: 'var(--color-text-dark)', marginBottom: '1rem' }}>Currently Occupied</h3>
+            <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', lineHeight: 1.6, marginBottom: '2.5rem' }}>
+              Our Virtual Office slots are currently at full capacity. However, you can still send an enquiry to join our priority waiting list for future availability.
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+              <Link 
+                to="/contact" 
+                className="btn btn-primary"
+                style={{ padding: '1.2rem', width: '100%' }}
+              >
+                Inquire for Future
+              </Link>
+              <button 
+                onClick={() => setIsModalOpen(false)}
+                style={{ color: 'var(--color-text-muted)', fontSize: '0.9rem', fontWeight: 500, textDecoration: 'underline' }}
+              >
+                Maybe Later
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
+    </AnimatePresence>
+  );
   const plans = [
     {
       title: "Private Office",
@@ -171,7 +227,8 @@ export default function Offices() {
         { label: "Pricing", price: "On Request" }
       ],
       icon: <Mail size={28} strokeWidth={1.5} />,
-      features: ["Prestigious business address", "Mail handling & forwarding", "Scanning service", "Flexible combination"]
+      features: ["Prestigious business address", "Mail handling & forwarding", "Scanning service", "Flexible combination"],
+      isOccupied: true
     },
     {
       title: "Corporate Spaces",
@@ -230,6 +287,7 @@ export default function Offices() {
 
   return (
     <main className="page-offices" style={{ backgroundColor: 'var(--color-bg-beige)', minHeight: '100vh', paddingBottom: '0' }}>
+      <StatusModal />
       
       {/* Hero Section */}
       <section className="page-hero" style={{ paddingTop: 'max(180px, 20vh)', paddingBottom: '6rem' }}>
@@ -292,22 +350,41 @@ export default function Offices() {
 
               {/* CTA Column */}
               <div className="pricing-row-cta" style={{ textAlign: 'right' }}>
-                <Link 
-                  to="/contact" 
-                  className="btn btn-primary" 
-                  style={{ 
-                    padding: '1.2rem 2.5rem', 
-                    backgroundColor: 'var(--color-text-dark)', 
-                    color: 'white', 
-                    display: 'inline-flex', 
-                    alignItems: 'center', 
-                    gap: '0.75rem',
-                    fontSize: '1rem',
-                    transition: 'all 0.3s ease'
-                  }}
-                >
-                  Inquire Now <ArrowRight size={18} />
-                </Link>
+                {plan.isOccupied ? (
+                  <button 
+                    onClick={() => setIsModalOpen(true)}
+                    className="btn btn-primary" 
+                    style={{ 
+                      padding: '1rem 2rem', 
+                      backgroundColor: 'var(--color-text-dark)', 
+                      color: 'white', 
+                      display: 'inline-flex', 
+                      alignItems: 'center', 
+                      gap: '0.75rem',
+                      fontSize: '0.95rem',
+                      transition: 'all 0.3s ease'
+                    }}
+                  >
+                    Inquire Now <ArrowRight size={18} />
+                  </button>
+                ) : (
+                  <Link 
+                    to="/contact" 
+                    className="btn btn-primary" 
+                    style={{ 
+                      padding: '1rem 2rem', 
+                      backgroundColor: 'var(--color-text-dark)', 
+                      color: 'white', 
+                      display: 'inline-flex', 
+                      alignItems: 'center', 
+                      gap: '0.75rem',
+                      fontSize: '0.95rem',
+                      transition: 'all 0.3s ease'
+                    }}
+                  >
+                    Inquire Now <ArrowRight size={18} />
+                  </Link>
+                )}
               </div>
             </motion.div>
           ))}
