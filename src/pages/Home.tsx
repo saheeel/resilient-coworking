@@ -44,9 +44,25 @@ export default function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}
+            style={{ display: 'flex', gap: '1rem', marginTop: '2rem', justifyContent: 'center' }}
           >
-            <a href="#memberships" className="btn btn-primary" style={{ backgroundColor: 'var(--color-bg-beige)', color: 'var(--color-bg-sage)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>Explore Spaces</a>
+            <button 
+              onClick={() => {
+                document.getElementById('memberships')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="btn btn-primary" 
+              style={{ 
+                backgroundColor: 'var(--color-bg-beige)', 
+                color: 'var(--color-bg-sage)', 
+                textDecoration: 'none', 
+                display: 'inline-flex', 
+                alignItems: 'center',
+                border: 'none',
+                cursor: 'pointer'
+              }}
+            >
+              Explore Spaces
+            </button>
           </motion.div>
         </div>
         <div className="hero-image-wrapper">
@@ -324,7 +340,7 @@ export default function Home() {
                 src="https://www.google.com/maps?q=Kreuzstrasse+24,+8008+Zurich,+Switzerland&output=embed" 
                 style={{ border: 0, position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', filter: 'grayscale(0.3) contrast(1.05)' }} 
                 allowFullScreen={false} 
-                loading="lazy" 
+                loading="eager" 
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Resilient Coworking Location"
               ></iframe>
