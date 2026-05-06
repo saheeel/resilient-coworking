@@ -4,7 +4,6 @@ import { ArrowRight, Building, Mail, Building2, ShieldCheck, Wifi, Coffee, Star,
 import { Link } from 'react-router-dom';
 
 export default function Offices() {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const officeImages = [
     '/private-office/IMG_1831-HDR.jpg',
     '/private-office/IMG_3948-HDR.jpg',
@@ -12,15 +11,147 @@ export default function Offices() {
     '/private-office/img_4800-plant.jpg.jpg'
   ];
 
-  const nextImage = () => setCurrentImageIndex((prev) => (prev + 1) % officeImages.length);
-  const prevImage = () => setCurrentImageIndex((prev) => (prev - 1 + officeImages.length) % officeImages.length);
+  const OfficeCarousel = ({ images }: { images: string[] }) => {
+    const [current, setCurrent] = useState(0);
+    const [isHovered, setIsHovered] = useState(false);
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      nextImage();
-    }, 4000);
-    return () => clearInterval(timer);
-  }, []);
+    useEffect(() => {
+      if (images.length <= 1 || isHovered) return;
+      const timer = setInterval(() => {
+        setCurrent((prev) => (prev + 1) % images.length);
+      }, 5000);
+      return () => clearInterval(timer);
+    }, [images.length, isHovered]);
+
+    const next = (e: React.MouseEvent) => {
+      e.stopPropagation();
+      setCurrent((prev) => (prev + 1) % images.length);
+    };
+
+    const prev = (e: React.MouseEvent) => {
+      e.stopPropagation();
+      setCurrent((prev) => (prev - 1 + images.length) % images.length);
+    };
+
+    return (
+      <motion.div 
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+        style={{ 
+          margin: '4rem auto 0', 
+          position: 'relative', 
+          width: '100%', 
+          maxWidth: '1000px', 
+          aspectRatio: '16/9', 
+          maxHeight: '70vh', 
+          borderRadius: '24px', 
+          overflow: 'hidden', 
+          boxShadow: '0 20px 40px rgba(0,0,0,0.1)',
+          backgroundColor: '#1a1a1a'
+        }}
+      >
+        <AnimatePresence initial={false}>
+          <motion.img
+            key={current}
+            src={images[current]}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1, ease: "easeInOut" }}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }}
+            alt={`Private Office View ${current + 1}`}
+          />
+        </AnimatePresence>
+        
+        {/* Navigation Arrows - Only on Hover */}
+        {images.length > 1 && (
+          <div style={{ 
+            position: 'absolute', 
+            top: 0, 
+            left: 0, 
+            right: 0, 
+            bottom: 0, 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center', 
+            padding: '0 2rem',
+            zIndex: 20,
+            pointerEvents: 'none'
+          }}>
+            <motion.button
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : -10 }}
+              onClick={prev}
+              style={{ 
+                pointerEvents: 'auto',
+                backgroundColor: 'rgba(255,255,255,0.2)',
+                backdropFilter: 'blur(10px)',
+                border: 'none',
+                width: '44px',
+                height: '44px',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'white',
+                cursor: 'pointer',
+                transition: 'background-color 0.3s ease'
+              }}
+              whileHover={{ backgroundColor: 'rgba(255,255,255,0.4)' }}
+            >
+              <ChevronLeft size={24} />
+            </motion.button>
+
+            <motion.button
+              initial={{ opacity: 0, x: 10 }}
+              animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : 10 }}
+              onClick={next}
+              style={{ 
+                pointerEvents: 'auto',
+                backgroundColor: 'rgba(255,255,255,0.2)',
+                backdropFilter: 'blur(10px)',
+                border: 'none',
+                width: '44px',
+                height: '44px',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'white',
+                cursor: 'pointer',
+                transition: 'background-color 0.3s ease'
+              }}
+              whileHover={{ backgroundColor: 'rgba(255,255,255,0.4)' }}
+            >
+              <ChevronRight size={24} />
+            </motion.button>
+          </div>
+        )}
+        
+        {/* Dots */}
+        <div style={{ position: 'absolute', bottom: '2rem', left: 0, width: '100%', display: 'flex', justifyContent: 'center', gap: '0.5rem', zIndex: 10 }}>
+          {images.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setCurrent(idx)}
+              style={{
+                width: '8px',
+                height: '8px',
+                borderRadius: '50%',
+                background: current === idx ? 'white' : 'rgba(255,255,255,0.5)',
+                border: 'none',
+                cursor: 'pointer',
+                transition: 'all 0.3s ease'
+              }}
+            />
+          ))}
+        </div>
+      </motion.div>
+    );
+  };
   const plans = [
     {
       title: "Private Office",
@@ -117,62 +248,7 @@ export default function Offices() {
             </p>
           </motion.div>
 
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            style={{ margin: '4rem auto 0', position: 'relative', width: '100%', maxWidth: '1000px', aspectRatio: '16/9', maxHeight: '70vh', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
-          >
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={currentImageIndex}
-                src={officeImages[currentImageIndex]}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.5 }}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }}
-                alt={`Private Office View ${currentImageIndex + 1}`}
-              />
-            </AnimatePresence>
-            
-            {/* Carousel Controls */}
-            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 2rem', pointerEvents: 'none' }}>
-              <button 
-                onClick={prevImage}
-                style={{ pointerEvents: 'auto', background: 'rgba(255,255,255,0.8)', border: 'none', borderRadius: '50%', width: '50px', height: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', backdropFilter: 'blur(10px)', transition: 'background 0.3s ease' }}
-                className="hover-bg-white"
-              >
-                <ChevronLeft size={24} color="var(--color-text-dark)" />
-              </button>
-              <button 
-                onClick={nextImage}
-                style={{ pointerEvents: 'auto', background: 'rgba(255,255,255,0.8)', border: 'none', borderRadius: '50%', width: '50px', height: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', backdropFilter: 'blur(10px)', transition: 'background 0.3s ease' }}
-                className="hover-bg-white"
-              >
-                <ChevronRight size={24} color="var(--color-text-dark)" />
-              </button>
-            </div>
-            
-            {/* Dots */}
-            <div style={{ position: 'absolute', bottom: '2rem', left: 0, width: '100%', display: 'flex', justifyContent: 'center', gap: '0.5rem' }}>
-              {officeImages.map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentImageIndex(idx)}
-                  style={{
-                    width: '10px',
-                    height: '10px',
-                    borderRadius: '50%',
-                    background: currentImageIndex === idx ? 'white' : 'rgba(255,255,255,0.5)',
-                    border: 'none',
-                    cursor: 'pointer',
-                    transition: 'all 0.3s ease'
-                  }}
-                />
-              ))}
-            </div>
-          </motion.div>
+          <OfficeCarousel images={officeImages} />
         </div>
       </section>
 

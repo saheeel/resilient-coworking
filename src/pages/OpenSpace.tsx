@@ -101,7 +101,7 @@ export default function OpenSpace() {
       </section>
 
       {/* Image Showcase */}
-      <section className="container image-showcase" style={{ paddingBottom: '8rem' }}>
+      <section className="container image-showcase" style={{ paddingBottom: 'var(--section-padding-sm)' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 400px), 1fr))', gap: '2rem' }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -112,7 +112,7 @@ export default function OpenSpace() {
             <img 
               src="/openspace/openspace1.jpg" 
               alt="Resilient Open Space View 1" 
-              style={{ width: '100%', height: 'max(400px, 45vh)', objectFit: 'cover', borderRadius: '24px' }}
+              style={{ width: '100%', height: 'clamp(300px, 45vh, 450px)', objectFit: 'cover', borderRadius: '24px' }}
             />
           </motion.div>
           <motion.div
@@ -131,66 +131,68 @@ export default function OpenSpace() {
       </section>
 
       {/* Pricing Section */}
-      <section className="container pricing-section" style={{ paddingBottom: '8rem' }}>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          {plans.map((plan, idx) => (
-            <motion.div 
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1, duration: 0.6 }}
-              className="pricing-row"
-            >
-              {/* Icon Column */}
-              <div style={{ color: 'var(--color-accent-terra)' }}>
-                {plan.icon}
-              </div>
+      <section className="pricing-section" style={{ backgroundColor: '#f5f4f1', padding: 'var(--section-padding) 0' }}>
+        <div className="container">
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            {plans.map((plan, idx) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1, duration: 0.6 }}
+                className="pricing-row"
+              >
+                {/* Icon Column */}
+                <div style={{ color: 'var(--color-accent-terra)' }}>
+                  {plan.icon}
+                </div>
 
-              {/* Info Column */}
-              <div>
-                <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--color-text-dark)', fontFamily: 'var(--font-serif)' }}>{plan.title}</h2>
-                <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', lineHeight: 1.5, maxWidth: '400px' }}>
-                  {plan.desc}
-                </p>
-              </div>
+                {/* Info Column */}
+                <div>
+                  <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--color-text-dark)', fontFamily: 'var(--font-serif)' }}>{plan.title}</h2>
+                  <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', lineHeight: 1.5, maxWidth: '400px' }}>
+                    {plan.desc}
+                  </p>
+                </div>
 
-              {/* Pricing Column */}
-              <div>
-                {plan.prices.map((p, i) => (
-                  <div key={i} style={{ marginBottom: i === plan.prices.length - 1 ? 0 : '1rem' }}>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.25rem' }}>{p.label}</div>
-                    <div style={{ fontSize: '1.75rem', fontWeight: 600, color: 'var(--color-text-dark)' }}>CHF {p.price}</div>
-                  </div>
-                ))}
-              </div>
+                {/* Pricing Column */}
+                <div>
+                  {plan.prices.map((p, i) => (
+                    <div key={i} style={{ marginBottom: i === plan.prices.length - 1 ? 0 : '1rem' }}>
+                      <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.25rem' }}>{p.label}</div>
+                      <div style={{ fontSize: '1.75rem', fontWeight: 600, color: 'var(--color-text-dark)' }}>CHF {p.price}</div>
+                    </div>
+                  ))}
+                </div>
 
-              {/* CTA Column */}
-              <div className="pricing-row-cta" style={{ textAlign: 'right' }}>
-                <Link 
-                  to="/contact" 
-                  className="btn btn-primary" 
-                  style={{ 
-                    padding: '1.2rem 2.5rem', 
-                    backgroundColor: 'var(--color-text-dark)', 
-                    color: 'white', 
-                    display: 'inline-flex', 
-                    alignItems: 'center', 
-                    gap: '0.75rem',
-                    fontSize: '1rem',
-                    transition: 'all 0.3s ease'
-                  }}
-                >
-                  Inquire Now <ArrowRight size={18} />
-                </Link>
-              </div>
-            </motion.div>
-          ))}
+                {/* CTA Column */}
+                <div className="pricing-row-cta" style={{ textAlign: 'right' }}>
+                  <Link 
+                    to="/contact" 
+                    className="btn btn-primary" 
+                    style={{ 
+                      padding: '1rem 2rem', 
+                      backgroundColor: 'var(--color-text-dark)', 
+                      color: 'white', 
+                      display: 'inline-flex', 
+                      alignItems: 'center', 
+                      gap: '0.75rem',
+                      fontSize: '0.95rem',
+                      transition: 'all 0.3s ease'
+                    }}
+                  >
+                    Inquire Now <ArrowRight size={18} />
+                  </Link>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Included Services (Sage Green) */}
-      <section className="services-section" style={{ backgroundColor: 'var(--color-bg-sage)', padding: '8rem 0' }}>
+      <section className="services-section" style={{ backgroundColor: 'var(--color-bg-sage)', padding: 'var(--section-padding) 0' }}>
         <div className="container">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}

@@ -305,17 +305,17 @@ export default function MeetingRooms() {
     <main style={{ backgroundColor: 'var(--color-bg-white)', minHeight: '100vh' }}>
       
       {/* Hero Section */}
-      <section className="page-hero" style={{ paddingTop: 'max(160px, 15vh)', paddingBottom: '4rem', backgroundColor: 'var(--color-bg-beige)' }}>
+      <section className="page-hero" style={{ paddingTop: 'max(140px, 15vh)', paddingBottom: 'var(--section-padding-sm)', backgroundColor: 'var(--color-bg-beige)' }}>
         <div className="container">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 style={{ fontSize: 'clamp(3rem, 5vw, 5rem)', color: 'var(--color-text-dark)', marginBottom: '1rem', lineHeight: 1 }}>
+            <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 5rem)', color: 'var(--color-text-dark)', marginBottom: '1rem', lineHeight: 1 }}>
               Boutique Meeting Rooms.
             </h1>
-            <p style={{ fontSize: '1.2rem', color: 'var(--color-text-muted)', maxWidth: '600px', lineHeight: 1.6 }}>
+            <p style={{ fontSize: '1.15rem', color: 'var(--color-text-muted)', maxWidth: '600px', lineHeight: 1.6 }}>
               Professional, inspiring, and fully equipped. Discover our range of uniquely designed rooms for your next success.
             </p>
           </motion.div>
@@ -323,12 +323,18 @@ export default function MeetingRooms() {
       </section>
 
       {/* Rooms List */}
-      <section style={{ padding: '4rem 0 8rem' }}>
-        <div className="container">
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8rem' }}>
-            {rooms.map((room, idx) => (
+      <section style={{ padding: '0 0 var(--section-padding) 0' }}>
+        {rooms.map((room, idx) => (
+          <div 
+            key={idx} 
+            style={{ 
+              backgroundColor: idx % 2 === 0 ? 'var(--color-bg-white)' : 'rgba(241, 236, 225, 0.4)',
+              padding: 'var(--section-padding) 0',
+              borderBottom: '1px solid rgba(0,0,0,0.03)'
+            }}
+          >
+            <div className="container">
               <motion.div 
-                key={idx}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
@@ -336,7 +342,7 @@ export default function MeetingRooms() {
                 style={{ 
                   display: 'grid', 
                   gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 450px), 1fr))', 
-                  gap: '4rem', 
+                  gap: '5rem', 
                   alignItems: 'start' 
                 }}
               >
@@ -348,11 +354,12 @@ export default function MeetingRooms() {
                 {/* Content Wrapper */}
                 <div style={{ order: idx % 2 === 0 ? 1 : 0, paddingTop: '1rem' }}>
                   <h2 style={{ 
-                    fontSize: '3.5rem', 
-                    marginBottom: '1rem', 
+                    fontSize: 'clamp(2.25rem, 5vw, 3.5rem)', 
+                    marginBottom: '1.25rem', 
                     color: 'var(--color-text-dark)', 
                     fontFamily: 'var(--font-serif)',
-                    letterSpacing: '-0.02em'
+                    letterSpacing: '-0.02em',
+                    lineHeight: 1.1
                   }}>
                     {room.title}
                   </h2>
@@ -360,7 +367,7 @@ export default function MeetingRooms() {
                     {room.description}
                   </p>
 
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '3rem', marginBottom: '3rem' }}>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'clamp(2rem, 4vw, 3rem)', marginBottom: '3rem' }}>
                     {/* Pricing */}
                     <div>
                       <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '1.25rem' }}>Investment</h4>
@@ -387,39 +394,39 @@ export default function MeetingRooms() {
                     </div>
                   </div>
 
-                  <Link to="/contact" className="btn btn-primary" style={{ padding: '1rem 2.5rem' }}>
+                  <Link to="/contact" className="btn btn-primary" style={{ padding: '1.25rem 3rem' }}>
                     Request Booking
                   </Link>
                 </div>
               </motion.div>
-            ))}
+            </div>
           </div>
-        </div>
+        ))}
       </section>
 
       {/* Benefits Banner */}
-      <section style={{ backgroundColor: 'var(--color-bg-sage)', padding: '6rem 0' }}>
+      <section style={{ backgroundColor: 'var(--color-bg-sage)', padding: 'var(--section-padding) 0' }}>
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '3rem', textAlign: 'center' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))', gap: 'clamp(2rem, 5vw, 4rem)', textAlign: 'center' }}>
             <div style={{ color: 'white' }}>
-              <Coffee size={32} style={{ marginBottom: '1rem', color: 'var(--color-accent-terra)' }} />
-              <h3 style={{ marginBottom: '0.5rem' }}>Refreshments</h3>
-              <p style={{ opacity: 0.8, fontSize: '0.9rem' }}>Premium coffee, tea & water included in all bookings.</p>
+              <Coffee size={36} style={{ marginBottom: '1.5rem', color: 'var(--color-accent-terra)' }} />
+              <h3 style={{ marginBottom: '0.75rem', fontSize: '1.5rem' }}>Refreshments</h3>
+              <p style={{ opacity: 0.8, fontSize: '1rem' }}>Premium coffee, tea & water included in all bookings.</p>
             </div>
             <div style={{ color: 'white' }}>
-              <Monitor size={32} style={{ marginBottom: '1rem', color: 'var(--color-accent-terra)' }} />
-              <h3 style={{ marginBottom: '0.5rem' }}>Full Tech</h3>
-              <p style={{ opacity: 0.8, fontSize: '0.9rem' }}>High-speed WiFi & large screens with easy HDMI setup.</p>
+              <Monitor size={36} style={{ marginBottom: '1.5rem', color: 'var(--color-accent-terra)' }} />
+              <h3 style={{ marginBottom: '0.75rem', fontSize: '1.5rem' }}>Full Tech</h3>
+              <p style={{ opacity: 0.8, fontSize: '1rem' }}>High-speed WiFi & large screens with easy HDMI setup.</p>
             </div>
             <div style={{ color: 'white' }}>
-              <Car size={32} style={{ marginBottom: '1rem', color: 'var(--color-accent-terra)' }} />
-              <h3 style={{ marginBottom: '0.5rem' }}>Parking</h3>
-              <p style={{ opacity: 0.8, fontSize: '0.9rem' }}>Private courtyard parking available on request.</p>
+              <Car size={36} style={{ marginBottom: '1.5rem', color: 'var(--color-accent-terra)' }} />
+              <h3 style={{ marginBottom: '0.75rem', fontSize: '1.5rem' }}>Parking</h3>
+              <p style={{ opacity: 0.8, fontSize: '1rem' }}>Private courtyard parking available on request.</p>
             </div>
             <div style={{ color: 'white' }}>
-              <Users size={32} style={{ marginBottom: '1rem', color: 'var(--color-accent-terra)' }} />
-              <h3 style={{ marginBottom: '0.5rem' }}>Support</h3>
-              <p style={{ opacity: 0.8, fontSize: '0.9rem' }}>On-site team to help with any technical or catering needs.</p>
+              <Users size={36} style={{ marginBottom: '1.5rem', color: 'var(--color-accent-terra)' }} />
+              <h3 style={{ marginBottom: '0.75rem', fontSize: '1.5rem' }}>Support</h3>
+              <p style={{ opacity: 0.8, fontSize: '1rem' }}>On-site team to help with any technical or catering needs.</p>
             </div>
           </div>
         </div>
