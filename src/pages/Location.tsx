@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 
 export default function LocationOverview() {
+  const { t } = useTranslation();
+
   const pointsOfInterest = [
     { location: "Lake Zurich (Lakeside Promenade)", desc: "Recreation, Swimming, Walks", distance: "2 min" },
     { location: "Zurich Opera House", desc: "Opera, Ballet & Cultural events", distance: "3 min" },
@@ -36,10 +39,10 @@ export default function LocationOverview() {
             style={{ maxWidth: '800px', textAlign: 'center', margin: '0 auto' }}
           >
             <h1 style={{ fontSize: 'clamp(3.5rem, 6vw, 5.5rem)', color: 'var(--color-text-dark)', marginBottom: '1.5rem', lineHeight: 1 }}>
-              Location Overview.
+              {t('location_page.hero_title')}
             </h1>
             <p style={{ fontSize: '1.25rem', color: 'var(--color-text-muted)', lineHeight: 1.6 }}>
-              Kreuzstrasse 24, 8008 Zurich. Situated in the heart of the city, perfectly connected and just steps away from the lake.
+              {t('location_page.hero_subtitle')}
             </p>
           </motion.div>
         </div>
@@ -60,8 +63,8 @@ export default function LocationOverview() {
           }}
         >
           <iframe 
-            src="https://www.google.com/maps?q=Kreuzstrasse+24,+8008+Zurich,+Switzerland&output=embed" 
-            style={{ border: 0, position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', filter: 'grayscale(0.3) contrast(1.05)' }} 
+            src="https://www.google.com/maps?q=Kreuzstrasse+24,+8008+Zurich,+Switzerland&output=embed&t=k" 
+            style={{ border: 0, position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', filter: 'contrast(1.05)' }} 
             allowFullScreen={false} 
             loading="lazy" 
             referrerPolicy="no-referrer-when-downgrade"
@@ -81,7 +84,7 @@ export default function LocationOverview() {
             viewport={{ once: true }}
             style={{ marginBottom: '6rem' }}
           >
-            <h2 style={{ fontSize: '2.5rem', marginBottom: '3rem', color: 'var(--color-bg-white)', borderBottom: '1px solid rgba(255,255,255,0.2)', paddingBottom: '1.5rem' }}>Points of Interest</h2>
+            <h2 style={{ fontSize: '2.5rem', marginBottom: '3rem', color: 'var(--color-bg-white)', borderBottom: '1px solid rgba(255,255,255,0.2)', paddingBottom: '1.5rem' }}>{t('location_page.poi')}</h2>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               {pointsOfInterest.map((row, i) => (
                 <div key={i} style={{ display: 'grid', gridTemplateColumns: '1.5fr 1.5fr 1fr', padding: '1.5rem 0', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
@@ -100,7 +103,7 @@ export default function LocationOverview() {
             viewport={{ once: true }}
             style={{ marginBottom: '6rem' }}
           >
-            <h2 style={{ fontSize: '2.5rem', marginBottom: '3rem', color: 'var(--color-bg-white)', borderBottom: '1px solid rgba(255,255,255,0.2)', paddingBottom: '1.5rem' }}>Public Transport</h2>
+            <h2 style={{ fontSize: '2.5rem', marginBottom: '3rem', color: 'var(--color-bg-white)', borderBottom: '1px solid rgba(255,255,255,0.2)', paddingBottom: '1.5rem' }}>{t('location_page.transport')}</h2>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               {publicTransport.map((row, i) => (
                 <div key={i} style={{ display: 'grid', gridTemplateColumns: '1.5fr 1.5fr 1fr', padding: '1.5rem 0', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
@@ -119,7 +122,7 @@ export default function LocationOverview() {
             viewport={{ once: true }}
             style={{ marginBottom: '4rem' }}
           >
-            <h2 style={{ fontSize: '2.5rem', marginBottom: '3rem', color: 'var(--color-bg-white)', borderBottom: '1px solid rgba(255,255,255,0.2)', paddingBottom: '1.5rem' }}>Supermarkets</h2>
+            <h2 style={{ fontSize: '2.5rem', marginBottom: '3rem', color: 'var(--color-bg-white)', borderBottom: '1px solid rgba(255,255,255,0.2)', paddingBottom: '1.5rem' }}>{t('location_page.markets')}</h2>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               {supermarkets.map((row, i) => (
                 <div key={i} style={{ display: 'grid', gridTemplateColumns: '1.5fr 1.5fr 1fr', padding: '1.5rem 0', borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
@@ -132,7 +135,7 @@ export default function LocationOverview() {
           </motion.div>
 
           <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.5)', textAlign: 'center', fontStyle: 'italic', marginTop: '4rem' }}>
-            *All distances are approximate and calculated using the fastest available means of transport.
+            {t('location_page.disclaimer')}
           </p>
 
         </div>

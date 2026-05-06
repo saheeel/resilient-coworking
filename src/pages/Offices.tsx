@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowRight, Building, Mail, Building2, ShieldCheck, Wifi, Coffee, Star, Car, Paintbrush, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function Offices() {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const { t } = useTranslation();
   const officeImages = [
     '/private-office/IMG_1831-HDR.jpg',
     '/private-office/IMG_3948-HDR.jpg',
@@ -155,139 +155,77 @@ export default function Offices() {
     );
   };
 
-  const StatusModal = () => (
-    <AnimatePresence>
-      {isModalOpen && (
-        <div style={{ position: 'fixed', inset: 0, zIndex: 1000, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem' }}>
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setIsModalOpen(false)}
-            style={{ position: 'absolute', inset: 0, backgroundColor: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(4px)' }} 
-          />
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            style={{ 
-              position: 'relative', 
-              backgroundColor: 'var(--color-bg-white)', 
-              padding: 'clamp(2rem, 5vw, 3rem)', 
-              borderRadius: '32px', 
-              maxWidth: '500px', 
-              width: '100%',
-              textAlign: 'center',
-              boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
-            }}
-          >
-            <div style={{ color: 'var(--color-accent-terra)', marginBottom: '1.5rem', display: 'flex', justifyContent: 'center' }}>
-              <Building2 size={48} strokeWidth={1.5} />
-            </div>
-            <h3 style={{ fontSize: '2rem', color: 'var(--color-text-dark)', marginBottom: '1rem' }}>Currently Occupied</h3>
-            <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', lineHeight: 1.6, marginBottom: '2.5rem' }}>
-              Our Virtual Office slots are currently at full capacity. However, you can still send an enquiry to join our priority waiting list for future availability.
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <Link 
-                to="/contact" 
-                className="btn btn-primary"
-                style={{ padding: '1.2rem', width: '100%' }}
-              >
-                Inquire for Future
-              </Link>
-              <button 
-                onClick={() => setIsModalOpen(false)}
-                style={{ color: 'var(--color-text-muted)', fontSize: '0.9rem', fontWeight: 500, textDecoration: 'underline' }}
-              >
-                Maybe Later
-              </button>
-            </div>
-          </motion.div>
-        </div>
-      )}
-    </AnimatePresence>
-  );
   const plans = [
     {
-      title: "Private Office",
-      desc: "4- or 6-person office, 24/7 badge access.",
-      subdesc: "20m² for max. 4 people",
+      title: t('offices.plans.private.title'),
+      desc: t('offices.plans.private.desc'),
+      subdesc: t('offices.plans.private.subdesc'),
       prices: [
-        { label: "4-person from", price: "2'650.- / Month" }
+        { label: t('offices.plans.private.label2'), price: "1'850.- / " + t('offices.plans.private.month'), isOccupied: true },
+        { label: t('offices.plans.private.label4'), price: "2'600.- / " + t('offices.plans.private.month') },
+        { label: t('offices.plans.private.label6'), price: "3'850.- / " + t('offices.plans.private.month') },
+        { label: t('offices.plans.private.label8'), price: "5'500.- / " + t('offices.plans.private.month') }
       ],
       icon: <Building size={28} strokeWidth={1.5} />,
-      features: ["Fully furnished", "24/7 access", "Meeting room allowance", "Daily cleaning"]
+      features: t('offices.plans.private.features', { returnObjects: true }) as string[]
     },
     {
-      title: "Virtual Office",
-      desc: "Only in combination with Flexdesk.",
-      subdesc: "Own company address, mail storage, further services like mail dispatch, scanning of mail according to offer.",
+      title: t('offices.plans.corporate.title'),
+      desc: t('offices.plans.corporate.desc'),
+      subdesc: t('offices.plans.corporate.subdesc'),
       prices: [
-        { label: "Pricing", price: "On Request" }
-      ],
-      icon: <Mail size={28} strokeWidth={1.5} />,
-      features: ["Prestigious business address", "Mail handling & forwarding", "Scanning service", "Flexible combination"],
-      isOccupied: true
-    },
-    {
-      title: "Corporate Spaces",
-      desc: "Do you need more than 6 workstations?",
-      subdesc: "Office space for up to approx. 25 workstations is our specialty. Tailor-made for your company culture.",
-      prices: [
-        { label: "Pricing", price: "On Request" }
+        { label: t('offices.plans.corporate.label'), price: t('offices.plans.corporate.price'), hideStatus: true }
       ],
       icon: <Building2 size={28} strokeWidth={1.5} />,
-      features: ["Custom floorplan", "Branded interior", "Dedicated amenities", "Scalable solutions"]
+      features: t('offices.plans.corporate.features', { returnObjects: true }) as string[]
     }
   ];
 
   const serviceCategories = [
     {
-      title: "Workspace & Tech",
+      title: t('offices.services.cat1.title'),
       icon: <Wifi size={28} strokeWidth={1.5} />,
       items: [
-        "High speed fiber optic internet connection",
-        "Laser Printer and highspeed-scanner",
-        "Phone booths and lounge areas on each floor",
-        "Address can be used as official business address, postal service to your door"
+        t('offices.services.cat1.item1'),
+        t('offices.services.cat1.item2'),
+        t('offices.services.cat1.item3'),
+        t('offices.services.cat1.item4')
       ]
     },
     {
-      title: "Facilities & Comfort",
+      title: t('offices.services.cat2.title'),
       icon: <Coffee size={28} strokeWidth={1.5} />,
       items: [
-        "High standard private showers",
-        "Cleaning: kitchen + toilets 4 x per week / offices 2 x per week",
-        "PET, glass, paper and cardboard are collected and recycled",
-        "In the kitchenettes: refrigerator, cutlery, dishwasher, coffee maker",
-        "Coffee and tea are included"
+        t('offices.services.cat2.item1'),
+        t('offices.services.cat2.item2'),
+        t('offices.services.cat2.item3'),
+        t('offices.services.cat2.item4'),
+        t('offices.services.cat2.item5')
       ]
     },
     {
-      title: "Access & Security",
+      title: t('offices.services.cat3.title'),
       icon: <ShieldCheck size={28} strokeWidth={1.5} />,
       items: [
-        "Access to the premises 24/7",
-        "Security badge system to the entrance doors",
-        "Access to the Resident 9 - 5pm, if no events",
-        "In-house facility and support team"
+        t('offices.services.cat3.item1'),
+        t('offices.services.cat3.item2'),
+        t('offices.services.cat3.item3'),
+        t('offices.services.cat3.item4')
       ]
     },
     {
-      title: "Exclusive Perks",
+      title: t('offices.services.cat4.title'),
       icon: <Star size={28} strokeWidth={1.5} />,
       items: [
-        "4h per desk Meetingroom-allowance (additional hours with 25% discount)",
-        "Discount on the rental of the Resident Eventlocation (for up to 250 people)",
-        "25% off drinks at the Resident"
+        t('offices.services.cat4.item1'),
+        t('offices.services.cat4.item2'),
+        t('offices.services.cat4.item3')
       ]
     }
   ];
 
   return (
     <main className="page-offices" style={{ backgroundColor: 'var(--color-bg-beige)', minHeight: '100vh', paddingBottom: '0' }}>
-      <StatusModal />
       
       {/* Hero Section */}
       <section className="page-hero" style={{ paddingTop: 'max(180px, 20vh)', paddingBottom: '6rem' }}>
@@ -299,10 +237,10 @@ export default function Offices() {
             style={{ maxWidth: '800px' }}
           >
             <h1 style={{ fontSize: 'clamp(3.5rem, 6vw, 5.5rem)', color: 'var(--color-text-dark)', marginBottom: '1.5rem', lineHeight: 1 }}>
-              Private Offices.
+              {t('offices.hero_title')}
             </h1>
             <p style={{ fontSize: '1.25rem', color: 'var(--color-text-muted)', lineHeight: 1.6, maxWidth: '600px' }}>
-              Your own private sanctuary in the heart of Zurich. Enjoy the privacy of a dedicated office with all the premium amenities of our boutique collection.
+              {t('offices.hero_subtitle')}
             </p>
           </motion.div>
 
@@ -337,54 +275,66 @@ export default function Offices() {
               </div>
 
               {/* Pricing Column */}
-              <div>
-                {plan.prices.map((p, i) => (
-                  <div key={i} style={{ marginBottom: i === plan.prices.length - 1 ? 0 : '1rem' }}>
-                    <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.25rem' }}>{p.label}</div>
-                    <div style={{ fontSize: '1.75rem', fontWeight: 600, color: 'var(--color-text-dark)' }}>
-                      {p.price.includes('CHF') ? p.price : (p.price === 'On Request' ? p.price : `CHF ${p.price}`)}
+              <div style={{ flex: 1.5 }}>
+                <div style={{ 
+                  display: 'grid', 
+                  gridTemplateColumns: plan.prices.length > 1 ? 'repeat(auto-fit, minmax(180px, 1fr))' : '1fr',
+                  gap: '1.5rem',
+                  backgroundColor: 'rgba(0,0,0,0.02)',
+                  padding: '1.5rem',
+                  borderRadius: '20px'
+                }}>
+                  {plan.prices.map((p, i) => (
+                    <div key={i}>
+                      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+                        <div style={{ fontSize: '0.7rem', color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{p.label}</div>
+                        {!p.hideStatus && (
+                          <div style={{ display: 'flex', alignItems: 'center', gap: '0.35rem' }}>
+                            <span style={{ 
+                              width: '6px', 
+                              height: '6px', 
+                              backgroundColor: p.isOccupied ? '#94a3b8' : '#22c55e', 
+                              borderRadius: '50%',
+                              display: 'inline-block',
+                              boxShadow: p.isOccupied ? 'none' : '0 0 8px rgba(34, 197, 94, 0.5)'
+                            }} />
+                            <span style={{ 
+                              fontSize: '0.65rem', 
+                              color: p.isOccupied ? '#64748b' : '#16a34a', 
+                              fontWeight: 600, 
+                              textTransform: 'uppercase' 
+                            }}>
+                              {p.isOccupied ? t('offices.plans.private.occupied') : t('offices.plans.private.available')}
+                            </span>
+                          </div>
+                        )}
+                      </div>
+                      <div style={{ fontSize: '1.4rem', fontWeight: 600, color: 'var(--color-text-dark)' }}>
+                        {p.price.includes('CHF') ? p.price : (p.price === t('offices.plans.corporate.price') ? p.price : `CHF ${p.price}`)}
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
 
               {/* CTA Column */}
               <div className="pricing-row-cta" style={{ textAlign: 'right' }}>
-                {plan.isOccupied ? (
-                  <button 
-                    onClick={() => setIsModalOpen(true)}
-                    className="btn btn-primary" 
-                    style={{ 
-                      padding: '1rem 2rem', 
-                      backgroundColor: 'var(--color-text-dark)', 
-                      color: 'white', 
-                      display: 'inline-flex', 
-                      alignItems: 'center', 
-                      gap: '0.75rem',
-                      fontSize: '0.95rem',
-                      transition: 'all 0.3s ease'
-                    }}
-                  >
-                    Inquire Now <ArrowRight size={18} />
-                  </button>
-                ) : (
-                  <Link 
-                    to="/contact" 
-                    className="btn btn-primary" 
-                    style={{ 
-                      padding: '1rem 2rem', 
-                      backgroundColor: 'var(--color-text-dark)', 
-                      color: 'white', 
-                      display: 'inline-flex', 
-                      alignItems: 'center', 
-                      gap: '0.75rem',
-                      fontSize: '0.95rem',
-                      transition: 'all 0.3s ease'
-                    }}
-                  >
-                    Inquire Now <ArrowRight size={18} />
-                  </Link>
-                )}
+                <Link 
+                  to="/contact" 
+                  className="btn btn-primary" 
+                  style={{ 
+                    padding: '1rem 2rem', 
+                    backgroundColor: 'var(--color-text-dark)', 
+                    color: 'white', 
+                    display: 'inline-flex', 
+                    alignItems: 'center', 
+                    gap: '0.75rem',
+                    fontSize: '0.95rem',
+                    transition: 'all 0.3s ease'
+                  }}
+                >
+                  {t('offices.plans.inquire')} <ArrowRight size={18} />
+                </Link>
               </div>
             </motion.div>
           ))}
@@ -400,9 +350,9 @@ export default function Offices() {
             viewport={{ once: true }}
             style={{ marginBottom: '5rem', borderBottom: '1px solid rgba(255,255,255,0.2)', paddingBottom: '2rem' }}
           >
-            <h2 style={{ color: 'var(--color-bg-white)', fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', margin: 0 }}>Included Services.</h2>
+            <h2 style={{ color: 'var(--color-bg-white)', fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', margin: 0 }}>{t('offices.services.title')}</h2>
             <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.25rem', marginTop: '1rem', maxWidth: '600px' }}>
-              Everything you need to run your business seamlessly. All included in your membership, with no hidden fees.
+              {t('offices.services.subtitle')}
             </p>
           </motion.div>
           
@@ -444,9 +394,9 @@ export default function Offices() {
             viewport={{ once: true }}
             style={{ marginBottom: '5rem', borderBottom: '1px solid rgba(0,0,0,0.1)', paddingBottom: '2rem' }}
           >
-            <h2 style={{ color: 'var(--color-text-dark)', fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', margin: 0 }}>Optional Upgrades.</h2>
+            <h2 style={{ color: 'var(--color-text-dark)', fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', margin: 0 }}>{t('offices.upgrades.title')}</h2>
             <p style={{ color: 'var(--color-text-muted)', fontSize: '1.25rem', marginTop: '1rem', maxWidth: '600px' }}>
-              Tailor your workspace with additional services designed to support your business growth.
+              {t('offices.upgrades.subtitle')}
             </p>
           </motion.div>
           
@@ -454,40 +404,40 @@ export default function Offices() {
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem', color: 'var(--color-accent-terra)' }}>
                 <Car size={24} strokeWidth={1.5} />
-                <h3 style={{ fontSize: '1.25rem', margin: 0, color: 'var(--color-text-dark)', fontWeight: 600 }}>Indoor Parking</h3>
+                <h3 style={{ fontSize: '1.25rem', margin: 0, color: 'var(--color-text-dark)', fontWeight: 600 }}>{t('offices.upgrades.car.title')}</h3>
               </div>
               <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', lineHeight: 1.6, margin: 0 }}>
-                Parking: Indoor (CHF 400.-, excl. VAT) depending on availability
+                {t('offices.upgrades.car.desc')}
               </p>
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem', color: 'var(--color-accent-terra)' }}>
                 <Building2 size={24} strokeWidth={1.5} />
-                <h3 style={{ fontSize: '1.25rem', margin: 0, color: 'var(--color-text-dark)', fontWeight: 600 }}>Conference & Seminar</h3>
+                <h3 style={{ fontSize: '1.25rem', margin: 0, color: 'var(--color-text-dark)', fontWeight: 600 }}>{t('offices.upgrades.conf.title')}</h3>
               </div>
               <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', lineHeight: 1.6, margin: 0 }}>
-                Conference and Seminar facilities available for larger team meetings or presentations.
+                {t('offices.upgrades.conf.desc')}
               </p>
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem', color: 'var(--color-accent-terra)' }}>
                 <Paintbrush size={24} strokeWidth={1.5} />
-                <h3 style={{ fontSize: '1.25rem', margin: 0, color: 'var(--color-text-dark)', fontWeight: 600 }}>Interior Design</h3>
+                <h3 style={{ fontSize: '1.25rem', margin: 0, color: 'var(--color-text-dark)', fontWeight: 600 }}>{t('offices.upgrades.design.title')}</h3>
               </div>
               <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', lineHeight: 1.6, margin: 0 }}>
-                Interior design services to upgrade offices and reflect your corporate identity.
+                {t('offices.upgrades.design.desc')}
               </p>
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem', color: 'var(--color-accent-terra)' }}>
                 <Star size={24} strokeWidth={1.5} />
-                <h3 style={{ fontSize: '1.25rem', margin: 0, color: 'var(--color-text-dark)', fontWeight: 600 }}>Event Consulting</h3>
+                <h3 style={{ fontSize: '1.25rem', margin: 0, color: 'var(--color-text-dark)', fontWeight: 600 }}>{t('offices.upgrades.event.title')}</h3>
               </div>
               <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', lineHeight: 1.6, margin: 0 }}>
-                Professional Event consulting to help you plan and execute the perfect occasion.
+                {t('offices.upgrades.event.desc')}
               </p>
             </motion.div>
           </div>

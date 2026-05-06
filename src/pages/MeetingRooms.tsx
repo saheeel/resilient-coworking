@@ -2,16 +2,19 @@ import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Users, Monitor, Coffee, Car, CheckCircle2, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function MeetingRooms() {
-  // ... (rooms data remains the same)
+  const { t } = useTranslation();
+
   const rooms = [
     {
-      title: "THE SEMINAR",
-      capacity: "Up to 55 persons",
+      id: 'seminar',
+      title: t('meeting_rooms.rooms.seminar.title'),
+      capacity: t('meeting_rooms.rooms.seminar.capacity'),
       prices: [
-        { label: "Half Day", value: "575.-" },
-        { label: "Full Day", value: "950.-" }
+        { label: t('meeting_rooms.prices.half'), value: "575.-" },
+        { label: t('meeting_rooms.prices.full'), value: "950.-" }
       ],
       features: ["Screen / Beamer with HDMI", "Flipchart", "Variable Lighting", "Kitchenette", "Sonos Soundsystem", "Air-conditioned"],
       images: [
@@ -21,15 +24,16 @@ export default function MeetingRooms() {
         "/meeting/the-seminar/resilient-meeting-room-the-seminar-4.webp",
         "/meeting/the-seminar/resilient-meeting-room-the-seminar-5.webp"
       ],
-      description: "The ideal infrastructure for complex and exciting business meetings, seminars, workshops, and events."
+      description: t('meeting_rooms.rooms.seminar.desc')
     },
     {
-      title: "CLASSIC",
-      capacity: "Up to 10 persons",
+      id: 'classic',
+      title: t('meeting_rooms.rooms.classic.title'),
+      capacity: t('meeting_rooms.rooms.classic.capacity'),
       prices: [
-        { label: "Up to 2 Hours", value: "145.-" },
-        { label: "Half Day", value: "250.-" },
-        { label: "Full Day", value: "390.-" }
+        { label: t('meeting_rooms.prices.h2'), value: "145.-" },
+        { label: t('meeting_rooms.prices.half'), value: "250.-" },
+        { label: t('meeting_rooms.prices.full'), value: "390.-" }
       ],
       features: ["Screen with HDMI", "Flipchart", "Whiteboard", "Air-conditioned"],
       images: [
@@ -37,14 +41,15 @@ export default function MeetingRooms() {
         "/meeting/classic/resilient-meeting-room-classic-2.webp",
         "/meeting/classic/resilient-meeting-room-classic-3.webp"
       ],
-      description: "A classic meeting room for focused work in groups of up to 10 people."
+      description: t('meeting_rooms.rooms.classic.desc')
     },
     {
-      title: "MATISSE",
-      capacity: "Up to 7 persons",
+      id: 'matisse',
+      title: t('meeting_rooms.rooms.matisse.title'),
+      capacity: t('meeting_rooms.rooms.matisse.capacity'),
       prices: [
-        { label: "Up to 2 Hours", value: "125.-" },
-        { label: "Up to 3 Hours", value: "180.-" }
+        { label: t('meeting_rooms.prices.h2'), value: "125.-" },
+        { label: t('meeting_rooms.prices.h3'), value: "180.-" }
       ],
       features: ["Screen with HDMI", "Flipchart", "Whiteboard"],
       images: [
@@ -53,15 +58,16 @@ export default function MeetingRooms() {
         "/meeting/matisse/resilient-meeting-room-matisse-3.webp",
         "/meeting/matisse/resilient-meeting-room-matisse-4.webp"
       ],
-      description: "Compact and creative space for smaller meetings."
+      description: t('meeting_rooms.rooms.matisse.desc')
     },
     {
-      title: "CONFERENCE",
-      capacity: "Up to 13 persons",
+      id: 'conference',
+      title: t('meeting_rooms.rooms.conference.title'),
+      capacity: t('meeting_rooms.rooms.conference.capacity'),
       prices: [
-        { label: "Up to 2 Hours", value: "250.-" },
-        { label: "Half Day", value: "375.-" },
-        { label: "Full Day", value: "650.-" }
+        { label: t('meeting_rooms.prices.h2'), value: "250.-" },
+        { label: t('meeting_rooms.prices.half'), value: "375.-" },
+        { label: t('meeting_rooms.prices.full'), value: "650.-" }
       ],
       features: ["Screen with HDMI", "Flipchart", "Whiteboard", "Openable Windows", "Air-conditioned"],
       images: [
@@ -70,14 +76,15 @@ export default function MeetingRooms() {
         "/meeting/conference/resilient-meeting-room-conference-3.webp",
         "/meeting/conference/resilient-meeting-room-conference-4.webp"
       ],
-      description: "Spacious conference room for professional meetings."
+      description: t('meeting_rooms.rooms.conference.desc')
     },
     {
-      title: "FLOW",
-      capacity: "Up to 16 persons",
+      id: 'flow',
+      title: t('meeting_rooms.rooms.flow.title'),
+      capacity: t('meeting_rooms.rooms.flow.capacity'),
       prices: [
-        { label: "Half Day", value: "300.-" },
-        { label: "Full Day", value: "450.-" }
+        { label: t('meeting_rooms.prices.half'), value: "300.-" },
+        { label: t('meeting_rooms.prices.full'), value: "450.-" }
       ],
       features: ["Screen with HDMI", "Flipchart", "Openable Windows", "7 Layout Options", "Air-conditioned"],
       images: [
@@ -87,14 +94,15 @@ export default function MeetingRooms() {
         "/meeting/flow/resilient-meeting-room-flow-4.webp",
         "/meeting/flow/resilient-meeting-room-flow-5.webp"
       ],
-      description: "Flexible room with 7 different setup variants, ideal for dynamic workshops."
+      description: t('meeting_rooms.rooms.flow.desc')
     },
     {
-      title: "KUSAMA",
-      capacity: "Up to 8 persons",
+      id: 'kusama',
+      title: t('meeting_rooms.rooms.kusama.title'),
+      capacity: t('meeting_rooms.rooms.kusama.capacity'),
       prices: [
-        { label: "Up to 2 Hours", value: "145.-" },
-        { label: "Up to 4 Hours", value: "250.-" }
+        { label: t('meeting_rooms.prices.h2'), value: "145.-" },
+        { label: t('meeting_rooms.prices.h4'), value: "250.-" }
       ],
       features: ["Screen with HDMI", "Flipchart", "Whiteboard", "Openable Windows"],
       images: [
@@ -102,14 +110,15 @@ export default function MeetingRooms() {
         "/meeting/kusama/resilient-meeting-room-kusama-2.webp",
         "/meeting/kusama/resilient-meeting-room-kusama-3.webp"
       ],
-      description: "Inspiring ambiance for creative teamwork."
+      description: t('meeting_rooms.rooms.kusama.desc')
     },
     {
-      title: "MIRO",
-      capacity: "Up to 8 persons",
+      id: 'miro',
+      title: t('meeting_rooms.rooms.miro.title'),
+      capacity: t('meeting_rooms.rooms.miro.capacity'),
       prices: [
-        { label: "Up to 2 Hours", value: "145.-" },
-        { label: "Half Day", value: "250.-" }
+        { label: t('meeting_rooms.prices.h2'), value: "145.-" },
+        { label: t('meeting_rooms.prices.half'), value: "250.-" }
       ],
       features: ["Screen with HDMI", "Flipchart", "Openable Windows"],
       images: [
@@ -117,14 +126,15 @@ export default function MeetingRooms() {
         "/meeting/miro/resilient-meeting-room-miro-2.webp",
         "/meeting/miro/resilient-meeting-room-miro-3.webp"
       ],
-      description: "Bright and friendly for efficient meetings."
+      description: t('meeting_rooms.rooms.miro.desc')
     },
     {
-      title: "WARHOL",
-      capacity: "Up to 7 persons",
+      id: 'warhol',
+      title: t('meeting_rooms.rooms.warhol.title'),
+      capacity: t('meeting_rooms.rooms.warhol.capacity'),
       prices: [
-        { label: "Up to 2 Hours", value: "125.-" },
-        { label: "Up to 3 Hours", value: "180.-" }
+        { label: t('meeting_rooms.prices.h2'), value: "125.-" },
+        { label: t('meeting_rooms.prices.h3'), value: "180.-" }
       ],
       features: ["Screen with HDMI", "Flipchart", "Whiteboard"],
       images: [
@@ -132,7 +142,7 @@ export default function MeetingRooms() {
         "/meeting/warhol/resilient-meeting-room-warhol-2.webp",
         "/meeting/warhol/resilient-meeting-room-warhol-3.webp"
       ],
-      description: "Small meeting room with modern flair."
+      description: t('meeting_rooms.rooms.warhol.desc')
     }
   ];
 
@@ -205,7 +215,7 @@ export default function MeetingRooms() {
             alignItems: 'center', 
             padding: '0 15px',
             zIndex: 20,
-            pointerEvents: 'none' // Click events handled by buttons
+            pointerEvents: 'none'
           }}>
             <motion.button
               initial={{ opacity: 0, x: -10 }}
@@ -313,10 +323,10 @@ export default function MeetingRooms() {
             transition={{ duration: 0.8 }}
           >
             <h1 style={{ fontSize: 'clamp(2.5rem, 5vw, 5rem)', color: 'var(--color-text-dark)', marginBottom: '1rem', lineHeight: 1 }}>
-              Boutique Meeting Rooms.
+              {t('meeting_rooms.hero_title')}
             </h1>
             <p style={{ fontSize: '1.15rem', color: 'var(--color-text-muted)', maxWidth: '600px', lineHeight: 1.6 }}>
-              Professional, inspiring, and fully equipped. Discover our range of uniquely designed rooms for your next success.
+              {t('meeting_rooms.hero_subtitle')}
             </p>
           </motion.div>
         </div>
@@ -370,7 +380,7 @@ export default function MeetingRooms() {
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 'clamp(2rem, 4vw, 3rem)', marginBottom: '3rem' }}>
                     {/* Pricing */}
                     <div>
-                      <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '1.25rem' }}>Investment</h4>
+                      <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '1.25rem' }}>{t('meeting_rooms.investment')}</h4>
                       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
                         {room.prices.map((p, i) => (
                           <div key={i} style={{ display: 'flex', justifyContent: 'space-between', borderBottom: '1px solid rgba(0,0,0,0.05)', paddingBottom: '0.5rem' }}>
@@ -383,7 +393,7 @@ export default function MeetingRooms() {
 
                     {/* Features */}
                     <div>
-                      <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '1.25rem' }}>Included</h4>
+                      <h4 style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '1.25rem' }}>{t('meeting_rooms.included')}</h4>
                       <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '0.6rem' }}>
                         {room.features.slice(0, 5).map((f, i) => (
                           <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.6rem', fontSize: '0.95rem', color: 'var(--color-text-muted)' }}>
@@ -395,7 +405,7 @@ export default function MeetingRooms() {
                   </div>
 
                   <Link to="/contact" className="btn btn-primary" style={{ padding: '1rem 2.2rem', fontSize: '0.9rem', display: 'inline-flex', alignItems: 'center', gap: '0.75rem' }}>
-                    Request Booking <ArrowRight size={18} />
+                    {t('meeting_rooms.request')} <ArrowRight size={18} />
                   </Link>
                 </div>
               </motion.div>
@@ -410,23 +420,23 @@ export default function MeetingRooms() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 250px), 1fr))', gap: 'clamp(2rem, 5vw, 4rem)', textAlign: 'center' }}>
             <div style={{ color: 'white' }}>
               <Coffee size={36} style={{ marginBottom: '1.5rem', color: 'var(--color-accent-terra)' }} />
-              <h3 style={{ marginBottom: '0.75rem', fontSize: '1.5rem' }}>Refreshments</h3>
-              <p style={{ opacity: 0.8, fontSize: '1rem' }}>Premium coffee, tea & water included in all bookings.</p>
+              <h3 style={{ marginBottom: '0.75rem', fontSize: '1.5rem' }}>{t('meeting_rooms.benefits.refreshments.title')}</h3>
+              <p style={{ opacity: 0.8, fontSize: '1rem' }}>{t('meeting_rooms.benefits.refreshments.desc')}</p>
             </div>
             <div style={{ color: 'white' }}>
               <Monitor size={36} style={{ marginBottom: '1.5rem', color: 'var(--color-accent-terra)' }} />
-              <h3 style={{ marginBottom: '0.75rem', fontSize: '1.5rem' }}>Full Tech</h3>
-              <p style={{ opacity: 0.8, fontSize: '1rem' }}>High-speed WiFi & large screens with easy HDMI setup.</p>
+              <h3 style={{ marginBottom: '0.75rem', fontSize: '1.5rem' }}>{t('meeting_rooms.benefits.tech.title')}</h3>
+              <p style={{ opacity: 0.8, fontSize: '1rem' }}>{t('meeting_rooms.benefits.tech.desc')}</p>
             </div>
             <div style={{ color: 'white' }}>
               <Car size={36} style={{ marginBottom: '1.5rem', color: 'var(--color-accent-terra)' }} />
-              <h3 style={{ marginBottom: '0.75rem', fontSize: '1.5rem' }}>Parking</h3>
-              <p style={{ opacity: 0.8, fontSize: '1rem' }}>Private courtyard parking available on request.</p>
+              <h3 style={{ marginBottom: '0.75rem', fontSize: '1.5rem' }}>{t('meeting_rooms.benefits.parking.title')}</h3>
+              <p style={{ opacity: 0.8, fontSize: '1rem' }}>{t('meeting_rooms.benefits.parking.desc')}</p>
             </div>
             <div style={{ color: 'white' }}>
               <Users size={36} style={{ marginBottom: '1.5rem', color: 'var(--color-accent-terra)' }} />
-              <h3 style={{ marginBottom: '0.75rem', fontSize: '1.5rem' }}>Support</h3>
-              <p style={{ opacity: 0.8, fontSize: '1rem' }}>On-site team to help with any technical or catering needs.</p>
+              <h3 style={{ marginBottom: '0.75rem', fontSize: '1.5rem' }}>{t('meeting_rooms.benefits.support.title')}</h3>
+              <p style={{ opacity: 0.8, fontSize: '1rem' }}>{t('meeting_rooms.benefits.support.desc')}</p>
             </div>
           </div>
         </div>

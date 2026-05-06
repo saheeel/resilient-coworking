@@ -1,12 +1,19 @@
 import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Globe } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
+  const { t, i18n } = useTranslation();
+
+  const toggleLanguage = () => {
+    const nextLang = i18n.language === 'en' ? 'de' : 'en';
+    i18n.changeLanguage(nextLang);
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -28,12 +35,14 @@ export default function Navbar() {
           <img src="/resilientlogo.png" alt="Resilient Studios" className="logo-img" />
         </Link>
         <nav className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''}`}>
-          <NavLink to="/open-space" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Open Space</NavLink>
-          <NavLink to="/offices" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Private Offices</NavLink>
-          <NavLink to="/meeting-rooms" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Meeting Rooms</NavLink>
-          <NavLink to="/location" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Location</NavLink>
-          <NavLink to="/about" className="nav-link" onClick={() => setMobileMenuOpen(false)}>About Us</NavLink>
-          {/* Classy Mobile Book Tour Link - Only visible in mobile menu */}
+          <NavLink to="/open-space" className="nav-link" onClick={() => setMobileMenuOpen(false)}>{t('nav.open_space')}</NavLink>
+          <NavLink to="/offices" className="nav-link" onClick={() => setMobileMenuOpen(false)}>{t('nav.private_offices')}</NavLink>
+          <NavLink to="/meeting-rooms" className="nav-link" onClick={() => setMobileMenuOpen(false)}>{t('nav.meeting_rooms')}</NavLink>
+          <NavLink to="/location" className="nav-link" onClick={() => setMobileMenuOpen(false)}>{t('nav.location')}</NavLink>
+          <NavLink to="/about" className="nav-link" onClick={() => setMobileMenuOpen(false)}>{t('nav.about_us')}</NavLink>
+          
+
+
           <Link 
             to="/contact" 
             className="nav-link mobile-only-link"
@@ -47,13 +56,13 @@ export default function Navbar() {
             }} 
             onClick={() => setMobileMenuOpen(false)}
           >
-            Book a Tour
+            {t('nav.book_tour')}
           </Link>
         </nav>
         
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <Link to="/contact" className="btn btn-primary btn-sm desktop-only-btn" style={{ textDecoration: 'none' }}>
-            Book a Tour
+            {t('nav.book_tour')}
           </Link>
           <button 
             className="mobile-menu-btn" 

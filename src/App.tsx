@@ -11,10 +11,13 @@ import Contact from './pages/Contact';
 import ScrollToTop from './components/ScrollToTop';
 import './App.css';
 
+import FloatingLanguageToggle from './components/FloatingLanguageToggle';
+
 function App() {
   return (
     <Router>
       <ScrollToTop />
+      <FloatingLanguageToggle />
       <div className="app-container">
         <Navbar />
         <Routes>

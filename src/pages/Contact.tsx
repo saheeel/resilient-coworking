@@ -1,7 +1,11 @@
 import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import BoutiqueMap from '../components/BoutiqueMap';
+import { useTranslation } from 'react-i18next';
 
 export default function Contact() {
+  const { t } = useTranslation();
+
   return (
     <main style={{ backgroundColor: 'var(--color-bg-beige)', minHeight: '100vh', paddingTop: 'max(150px, 15vh)', paddingBottom: '100px' }}>
       
@@ -14,10 +18,10 @@ export default function Contact() {
           style={{ marginBottom: '6rem', maxWidth: '800px' }}
         >
           <h1 style={{ fontSize: 'clamp(3.5rem, 6vw, 6rem)', color: 'var(--color-text-dark)', marginBottom: '1.5rem', lineHeight: 1 }}>
-            Let's get in touch.
+            {t('contact.hero_title')}
           </h1>
           <p style={{ fontSize: '1.25rem', color: 'var(--color-text-muted)', lineHeight: 1.6 }}>
-            Book a non-binding tour of our 7 boutiques or reach out with any questions. We look forward to meeting you.
+            {t('contact.hero_subtitle')}
           </p>
         </motion.div>
 
@@ -32,7 +36,7 @@ export default function Contact() {
             style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}
           >
             <div>
-              <h3 style={{ fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '1rem', fontFamily: 'var(--font-sans)', fontWeight: 600 }}>Location</h3>
+              <h3 style={{ fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '1rem', fontFamily: 'var(--font-sans)', fontWeight: 600 }}>{t('contact.details.location')}</h3>
               <p style={{ fontSize: '1.25rem', color: 'var(--color-text-dark)', margin: 0, lineHeight: 1.5 }}>
                 Kreuzstrasse 24<br/>
                 8008 Zurich<br/>
@@ -44,12 +48,12 @@ export default function Contact() {
                 rel="noopener noreferrer"
                 style={{ color: 'var(--color-accent-terra)', fontSize: '1rem', marginTop: '1rem', display: 'inline-flex', alignItems: 'center', gap: '0.5rem', fontWeight: 500 }}
               >
-                View on Google Maps <ArrowRight size={16} />
+                {t('contact.details.view_maps')} <ArrowRight size={16} />
               </a>
             </div>
 
             <div>
-              <h3 style={{ fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '1rem', fontFamily: 'var(--font-sans)', fontWeight: 600 }}>Contact</h3>
+              <h3 style={{ fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '1rem', fontFamily: 'var(--font-sans)', fontWeight: 600 }}>{t('contact.details.contact')}</h3>
               <a href="mailto:info@resilient-studios.com" style={{ display: 'block', fontSize: '1.25rem', color: 'var(--color-text-dark)', marginBottom: '0.5rem', textDecoration: 'none' }} onMouseOver={(e) => e.currentTarget.style.color = 'var(--color-accent-terra)'} onMouseOut={(e) => e.currentTarget.style.color = 'var(--color-text-dark)'}>
                 info@resilient-studios.com
               </a>
@@ -60,7 +64,7 @@ export default function Contact() {
 
             <div style={{ paddingTop: '3rem', borderTop: '1px solid rgba(0,0,0,0.1)' }}>
                <p style={{ fontSize: '1rem', color: 'var(--color-text-muted)', fontStyle: 'italic', margin: 0, lineHeight: 1.6 }}>
-                Perfectly situated: Just a 2-minute walk from the Lake Zurich promenade and 5 minutes from Stadelhofen station.
+                {t('location.desc')}
               </p>
             </div>
           </motion.div>
@@ -82,39 +86,39 @@ export default function Contact() {
               
               <div className="responsive-grid-2" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '2rem' }}>
                 <div style={{ position: 'relative' }}>
-                  <label htmlFor="firstName" style={{ display: 'block', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '0.5rem' }}>First Name</label>
+                  <label htmlFor="firstName" style={{ display: 'block', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '0.5rem' }}>{t('contact.form.first_name')}</label>
                   <input type="text" id="firstName" style={{ width: '100%', padding: '0.5rem 0', border: 'none', borderBottom: '1px solid rgba(0,0,0,0.2)', backgroundColor: 'transparent', fontFamily: 'inherit', fontSize: '1.125rem', color: 'var(--color-text-dark)', outline: 'none', transition: 'border-color 0.3s' }} onFocus={(e) => e.target.style.borderColor = 'var(--color-text-dark)'} onBlur={(e) => e.target.style.borderColor = 'rgba(0,0,0,0.2)'} />
                 </div>
                 <div style={{ position: 'relative' }}>
-                  <label htmlFor="lastName" style={{ display: 'block', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '0.5rem' }}>Last Name</label>
+                  <label htmlFor="lastName" style={{ display: 'block', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '0.5rem' }}>{t('contact.form.last_name')}</label>
                   <input type="text" id="lastName" style={{ width: '100%', padding: '0.5rem 0', border: 'none', borderBottom: '1px solid rgba(0,0,0,0.2)', backgroundColor: 'transparent', fontFamily: 'inherit', fontSize: '1.125rem', color: 'var(--color-text-dark)', outline: 'none', transition: 'border-color 0.3s' }} onFocus={(e) => e.target.style.borderColor = 'var(--color-text-dark)'} onBlur={(e) => e.target.style.borderColor = 'rgba(0,0,0,0.2)'} />
                 </div>
               </div>
 
               <div style={{ position: 'relative' }}>
-                <label htmlFor="email" style={{ display: 'block', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '0.5rem' }}>Email Address</label>
+                <label htmlFor="email" style={{ display: 'block', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '0.5rem' }}>{t('contact.form.email')}</label>
                 <input type="email" id="email" style={{ width: '100%', padding: '0.5rem 0', border: 'none', borderBottom: '1px solid rgba(0,0,0,0.2)', backgroundColor: 'transparent', fontFamily: 'inherit', fontSize: '1.125rem', color: 'var(--color-text-dark)', outline: 'none', transition: 'border-color 0.3s' }} onFocus={(e) => e.target.style.borderColor = 'var(--color-text-dark)'} onBlur={(e) => e.target.style.borderColor = 'rgba(0,0,0,0.2)'} />
               </div>
 
               <div style={{ position: 'relative' }}>
-                <label htmlFor="interest" style={{ display: 'block', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '0.5rem' }}>I am interested in</label>
+                <label htmlFor="interest" style={{ display: 'block', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '0.5rem' }}>{t('contact.form.interest_label')}</label>
                 <select id="interest" style={{ width: '100%', padding: '0.5rem 0', border: 'none', borderBottom: '1px solid rgba(0,0,0,0.2)', backgroundColor: 'transparent', fontFamily: 'inherit', fontSize: '1.125rem', color: 'var(--color-text-dark)', outline: 'none', cursor: 'pointer', appearance: 'none', borderRadius: 0 }} onFocus={(e) => e.target.style.borderColor = 'var(--color-text-dark)'} onBlur={(e) => e.target.style.borderColor = 'rgba(0,0,0,0.2)'}>
-                  <option>Private Office</option>
-                  <option>Team Studio</option>
-                  <option>Fixdesk</option>
-                  <option>Flexdesk</option>
-                  <option>Event Location</option>
-                  <option>Other Inquiry</option>
+                  <option>{t('contact.form.interests.private')}</option>
+                  <option>{t('contact.form.interests.team')}</option>
+                  <option>{t('contact.form.interests.fixdesk')}</option>
+                  <option>{t('contact.form.interests.flexdesk')}</option>
+                  <option>{t('contact.form.interests.event')}</option>
+                  <option>{t('contact.form.interests.other')}</option>
                 </select>
               </div>
 
               <div style={{ position: 'relative' }}>
-                <label htmlFor="message" style={{ display: 'block', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '0.5rem' }}>Your Message</label>
+                <label htmlFor="message" style={{ display: 'block', fontSize: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: 'var(--color-text-muted)', marginBottom: '0.5rem' }}>{t('contact.form.message')}</label>
                 <textarea id="message" rows={3} style={{ width: '100%', padding: '0.5rem 0', border: 'none', borderBottom: '1px solid rgba(0,0,0,0.2)', backgroundColor: 'transparent', fontFamily: 'inherit', fontSize: '1.125rem', color: 'var(--color-text-dark)', outline: 'none', transition: 'border-color 0.3s', resize: 'vertical' }} onFocus={(e) => e.target.style.borderColor = 'var(--color-text-dark)'} onBlur={(e) => e.target.style.borderColor = 'rgba(0,0,0,0.2)'}></textarea>
               </div>
 
               <button type="button" className="btn btn-primary" style={{ marginTop: '0.5rem', alignSelf: 'flex-start', padding: '1rem 3rem', fontSize: '1rem', display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
-                Submit Request <ArrowRight size={18} />
+                {t('contact.form.submit')} <ArrowRight size={18} />
               </button>
             </form>
           </motion.div>
@@ -128,14 +132,7 @@ export default function Contact() {
           viewport={{ once: true }}
           style={{ marginTop: '8rem', borderRadius: '24px', overflow: 'hidden', height: '500px', position: 'relative', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
         >
-          <iframe 
-            src="https://www.google.com/maps?q=Kreuzstrasse+24,+8008+Zurich,+Switzerland&output=embed" 
-            style={{ border: 0, position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', filter: 'grayscale(0.3) contrast(1.05)' }} 
-            allowFullScreen={false} 
-            loading="lazy" 
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Resilient Coworking Location"
-          ></iframe>
+          <BoutiqueMap />
         </motion.div>
 
       </div>

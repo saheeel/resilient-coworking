@@ -1,8 +1,11 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Users, Sparkles, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation, Trans } from 'react-i18next';
 
 export default function About() {
+  const { t } = useTranslation();
+
   return (
     <main style={{ backgroundColor: 'var(--color-bg-beige)', minHeight: '100vh' }}>
       
@@ -16,10 +19,12 @@ export default function About() {
             style={{ maxWidth: '900px' }}
           >
             <h1 style={{ fontSize: 'clamp(3.5rem, 6vw, 6rem)', color: 'var(--color-text-dark)', marginBottom: '2rem', lineHeight: 1 }}>
-              Boutique Workspace <br /> With Soul.
+              <Trans i18nKey="about.hero_title">
+                Boutique Workspace <br /> With Soul.
+              </Trans>
             </h1>
             <p style={{ fontSize: 'clamp(1.25rem, 2vw, 1.5rem)', color: 'var(--color-text-muted)', lineHeight: 1.6, maxWidth: '700px' }}>
-              We are a successfully established collection of 7 coworking boutiques spread across 7 floors in 3 neighboring buildings. Each uniquely and lovingly furnished to provide a private yet vibrant environment.
+              {t('about.hero_subtitle')}
             </p>
           </motion.div>
         </div>
@@ -47,12 +52,12 @@ export default function About() {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', marginBottom: '2rem' }}>The Luxury of Focus.</h2>
+              <h2 style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', marginBottom: '2rem' }}>{t('about.focus_title')}</h2>
               <p style={{ fontSize: '1.2rem', color: 'var(--color-text-muted)', marginBottom: '1.5rem', lineHeight: 1.6 }}>
-                It's a massive relief not to worry about cleaning, Wi-Fi, or printer issues. Not to mention the hassle of accepting online packages. Here, you enjoy a hotel-like service.
+                {t('about.focus_p1')}
               </p>
               <p style={{ fontSize: '1.2rem', color: 'var(--color-text-muted)', lineHeight: 1.6 }}>
-                Having your own office—or several offices for a larger team—while enjoying hotel-like amenities is an offering unlike any other. Plus, being just two minutes from the magnificent Lake Zurich promenade and five minutes from Stadelhofen station is the ultimate convenience.
+                {t('about.focus_p2')}
               </p>
             </motion.div>
           </div>
@@ -69,7 +74,7 @@ export default function About() {
               viewport={{ once: true }}
               style={{ fontSize: 'clamp(2.5rem, 5vw, 4rem)', color: 'var(--color-bg-white)', marginBottom: '2rem' }}
             >
-              Where Everyone Knows Your Name.
+              {t('about.community_title')}
             </motion.h2>
             <motion.p 
               initial={{ opacity: 0, y: 30 }}
@@ -78,23 +83,23 @@ export default function About() {
               transition={{ delay: 0.1 }}
               style={{ fontSize: '1.25rem', color: 'rgba(255,255,255,0.8)', lineHeight: 1.7, marginBottom: '3rem' }}
             >
-              In a true boutique environment, you aren't just an anonymous face in a massive corporate building. Here, people know each other. This culture is the foundation that helps you attract and retain top talent.
+              {t('about.community_subtitle')}
             </motion.p>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '3rem', marginTop: '4rem' }}>
               <div>
                 <Heart size={40} color="var(--color-accent-terra)" style={{ marginBottom: '1.5rem' }} />
-                <h3 style={{ color: 'var(--color-bg-white)', marginBottom: '1rem' }}>Personal Service</h3>
-                <p style={{ color: 'rgba(255,255,255,0.7)' }}>Tailored support that understands your specific business needs.</p>
+                <h3 style={{ color: 'var(--color-bg-white)', marginBottom: '1rem' }}>{t('about.features.service.title')}</h3>
+                <p style={{ color: 'rgba(255,255,255,0.7)' }}>{t('about.features.service.desc')}</p>
               </div>
               <div>
                 <Users size={40} color="var(--color-accent-terra)" style={{ marginBottom: '1.5rem' }} />
-                <h3 style={{ color: 'var(--color-bg-white)', marginBottom: '1rem' }}>Inspiring Exchange</h3>
-                <p style={{ color: 'rgba(255,255,255,0.7)' }}>A community of experts and inspiring personalities across all floors.</p>
+                <h3 style={{ color: 'var(--color-bg-white)', marginBottom: '1rem' }}>{t('about.features.exchange.title')}</h3>
+                <p style={{ color: 'rgba(255,255,255,0.7)' }}>{t('about.features.exchange.desc')}</p>
               </div>
               <div>
                 <Sparkles size={40} color="var(--color-accent-terra)" style={{ marginBottom: '1.5rem' }} />
-                <h3 style={{ color: 'var(--color-bg-white)', marginBottom: '1rem' }}>Hotel-like Amenities</h3>
-                <p style={{ color: 'rgba(255,255,255,0.7)' }}>Private showers, equipped kitchens, and an award-winning internal working café.</p>
+                <h3 style={{ color: 'var(--color-bg-white)', marginBottom: '1rem' }}>{t('about.features.amenities.title')}</h3>
+                <p style={{ color: 'rgba(255,255,255,0.7)' }}>{t('about.features.amenities.desc')}</p>
               </div>
             </div>
           </div>
@@ -110,9 +115,9 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', marginBottom: '2rem' }}>Ready to join our community?</h2>
+            <h2 style={{ fontSize: 'clamp(2rem, 4vw, 3rem)', marginBottom: '2rem' }}>{t('about.cta_title')}</h2>
             <Link to="/contact" className="btn btn-primary" style={{ display: 'inline-flex', alignItems: 'center', gap: '1rem', padding: '1.2rem 3rem', fontSize: '1.1rem' }}>
-              Book a Private Tour <ArrowRight size={20} />
+              {t('about.cta_btn')} <ArrowRight size={20} />
             </Link>
           </motion.div>
         </div>

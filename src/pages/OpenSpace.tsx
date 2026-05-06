@@ -1,34 +1,37 @@
 import { motion } from 'framer-motion';
 import { ArrowRight, Clock, Shield, Monitor, ShieldCheck, Wifi, Coffee, Star, Car, Building2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export default function OpenSpace() {
+  const { t } = useTranslation();
+
   const plans = [
     {
-      title: "Daypass / Test Day",
-      desc: "At Resilient and/or Resident from 08:30 to 17:30.",
+      title: t('open_space.plans.daypass.title'),
+      desc: t('open_space.plans.daypass.desc'),
       prices: [
-        { label: "Full Day", price: "35.-" },
-        { label: "Half Day", price: "20.-" }
+        { label: t('open_space.plans.daypass.label_full'), price: "35.-" },
+        { label: t('open_space.plans.daypass.label_half'), price: "20.-" }
       ],
       icon: <Clock size={28} strokeWidth={1.5} />,
       features: ["Flexible workspace", "High-speed WiFi", "Premium Coffee/Tea", "Lounge access"]
     },
     {
-      title: "Flexdesk",
-      desc: "24/7 Badge access for ultimate flexibility.",
+      title: t('open_space.plans.flexdesk.title'),
+      desc: t('open_space.plans.flexdesk.desc'),
       prices: [
-        { label: "10 Days / Month", price: "380.-" },
-        { label: "15 Days / Month", price: "520.-" }
+        { label: t('open_space.plans.flexdesk.label10'), price: "380.-" },
+        { label: t('open_space.plans.flexdesk.label15'), price: "520.-" }
       ],
       icon: <Shield size={28} strokeWidth={1.5} />,
       features: ["24/7 access", "Badge system", "Mail handling", "Community events"]
     },
     {
-      title: "Fixdesk",
-      desc: "Your own permanent desk with full business support.",
+      title: t('open_space.plans.fixdesk.title'),
+      desc: t('open_space.plans.fixdesk.desc'),
       prices: [
-        { label: "Monthly", price: "725.-" }
+        { label: t('open_space.plans.fixdesk.label'), price: "725.-" }
       ],
       icon: <Monitor size={28} strokeWidth={1.5} />,
       features: ["Dedicated desk", "24/7 access", "5h Meeting rooms incl.", "Business address incl."]
@@ -37,43 +40,43 @@ export default function OpenSpace() {
 
   const serviceCategories = [
     {
-      title: "Workspace & Tech",
+      title: t('offices.services.cat1.title'),
       icon: <Wifi size={28} strokeWidth={1.5} />,
       items: [
-        "High speed fiber optic internet connection",
-        "Laser Printer and highspeed-scanner",
-        "Phone booths and lounge areas on each floor",
-        "Address can be used as official business address, postal service to your desk (fixdesk only)"
+        t('offices.services.cat1.item1'),
+        t('offices.services.cat1.item2'),
+        t('offices.services.cat1.item3'),
+        t('offices.services.cat1.item4')
       ]
     },
     {
-      title: "Facilities & Comfort",
+      title: t('offices.services.cat2.title'),
       icon: <Coffee size={28} strokeWidth={1.5} />,
       items: [
-        "High standard private showers",
-        "Cleaning: kitchen + toilets 4 x per week / offices 2 x per week",
-        "PET, glass, paper and cardboard are collected and recycled",
-        "In the kitchenettes: refrigerator, cutlery, dishwasher, coffee maker",
-        "Coffee and tea are included"
+        t('offices.services.cat2.item1'),
+        t('offices.services.cat2.item2'),
+        t('offices.services.cat2.item3'),
+        t('offices.services.cat2.item4'),
+        t('offices.services.cat2.item5')
       ]
     },
     {
-      title: "Access & Security",
+      title: t('offices.services.cat3.title'),
       icon: <ShieldCheck size={28} strokeWidth={1.5} />,
       items: [
-        "Access to the premises 24/7 (fixdesk only)",
-        "Security badge system to the entrance doors",
-        "Access to the Resident 9 - 5pm, if no events",
-        "In-house facility and support team"
+        t('offices.services.cat3.item1'),
+        t('offices.services.cat3.item2'),
+        t('offices.services.cat3.item3'),
+        t('offices.services.cat3.item4')
       ]
     },
     {
-      title: "Exclusive Perks",
+      title: t('offices.services.cat4.title'),
       icon: <Star size={28} strokeWidth={1.5} />,
       items: [
-        "4h per desk Meetingroom-allowance (fixdesk only, additional hours 25% discount)",
-        "Discount on the rental of the Resident Eventlocation (fixdesk only, for up to 250 people)",
-        "25% off drinks at the Resident"
+        t('offices.services.cat4.item1'),
+        t('offices.services.cat4.item2'),
+        t('offices.services.cat4.item3')
       ]
     }
   ];
@@ -91,10 +94,10 @@ export default function OpenSpace() {
             style={{ maxWidth: '800px' }}
           >
             <h1 style={{ fontSize: 'clamp(3.5rem, 6vw, 5.5rem)', color: 'var(--color-text-dark)', marginBottom: '1.5rem', lineHeight: 1 }}>
-              Open Space.
+              {t('open_space.hero_title')}
             </h1>
             <p style={{ fontSize: '1.25rem', color: 'var(--color-text-muted)', lineHeight: 1.6, maxWidth: '600px' }}>
-              Flexible coworking solutions for creative professionals and growing teams. Choose the plan that fits your rhythm.
+              {t('open_space.hero_subtitle')}
             </p>
           </motion.div>
         </div>
@@ -182,7 +185,7 @@ export default function OpenSpace() {
                       transition: 'all 0.3s ease'
                     }}
                   >
-                    Inquire Now <ArrowRight size={18} />
+                    {t('open_space.plans.inquire')} <ArrowRight size={18} />
                   </Link>
                 </div>
               </motion.div>
@@ -200,9 +203,9 @@ export default function OpenSpace() {
             viewport={{ once: true }}
             style={{ marginBottom: '5rem', borderBottom: '1px solid rgba(255,255,255,0.2)', paddingBottom: '2rem' }}
           >
-            <h2 style={{ color: 'var(--color-bg-white)', fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', margin: 0 }}>Included Services.</h2>
+            <h2 style={{ color: 'var(--color-bg-white)', fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', margin: 0 }}>{t('offices.services.title')}</h2>
             <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '1.25rem', marginTop: '1rem', maxWidth: '600px' }}>
-              Everything you need to run your business seamlessly. All included in your membership, with no hidden fees.
+              {t('offices.services.subtitle')}
             </p>
           </motion.div>
           
@@ -244,9 +247,9 @@ export default function OpenSpace() {
             viewport={{ once: true }}
             style={{ marginBottom: '5rem', borderBottom: '1px solid rgba(0,0,0,0.1)', paddingBottom: '2rem' }}
           >
-            <h2 style={{ color: 'var(--color-text-dark)', fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', margin: 0 }}>Optional Upgrades.</h2>
+            <h2 style={{ color: 'var(--color-text-dark)', fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', margin: 0 }}>{t('offices.upgrades.title')}</h2>
             <p style={{ color: 'var(--color-text-muted)', fontSize: '1.25rem', marginTop: '1rem', maxWidth: '600px' }}>
-              Tailor your workspace with additional services designed to support your business growth.
+              {t('offices.upgrades.subtitle')}
             </p>
           </motion.div>
           
@@ -254,30 +257,30 @@ export default function OpenSpace() {
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem', color: 'var(--color-accent-terra)' }}>
                 <Car size={24} strokeWidth={1.5} />
-                <h3 style={{ fontSize: '1.25rem', margin: 0, color: 'var(--color-text-dark)', fontWeight: 600 }}>Indoor Parking</h3>
+                <h3 style={{ fontSize: '1.25rem', margin: 0, color: 'var(--color-text-dark)', fontWeight: 600 }}>{t('offices.upgrades.car.title')}</h3>
               </div>
               <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', lineHeight: 1.6, margin: 0 }}>
-                Parking: Indoor (CHF 400.-, excl. VAT) depending on availability
+                {t('offices.upgrades.car.desc')}
               </p>
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem', color: 'var(--color-accent-terra)' }}>
                 <Building2 size={24} strokeWidth={1.5} />
-                <h3 style={{ fontSize: '1.25rem', margin: 0, color: 'var(--color-text-dark)', fontWeight: 600 }}>Conference & Seminar</h3>
+                <h3 style={{ fontSize: '1.25rem', margin: 0, color: 'var(--color-text-dark)', fontWeight: 600 }}>{t('offices.upgrades.conf.title')}</h3>
               </div>
               <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', lineHeight: 1.6, margin: 0 }}>
-                Conference and Seminar facilities available for larger team meetings or presentations.
+                {t('offices.upgrades.conf.desc')}
               </p>
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem', color: 'var(--color-accent-terra)' }}>
                 <Star size={24} strokeWidth={1.5} />
-                <h3 style={{ fontSize: '1.25rem', margin: 0, color: 'var(--color-text-dark)', fontWeight: 600 }}>Event Consulting</h3>
+                <h3 style={{ fontSize: '1.25rem', margin: 0, color: 'var(--color-text-dark)', fontWeight: 600 }}>{t('offices.upgrades.event.title')}</h3>
               </div>
               <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', lineHeight: 1.6, margin: 0 }}>
-                Professional Event consulting to help you plan and execute the perfect occasion.
+                {t('offices.upgrades.event.desc')}
               </p>
             </motion.div>
           </div>
