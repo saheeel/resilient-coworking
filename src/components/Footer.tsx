@@ -1,4 +1,4 @@
-import { MapPin, Mail, Phone, Globe } from 'lucide-react';
+import { MapPin, Mail, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -6,8 +6,7 @@ export default function Footer() {
   const { t, i18n } = useTranslation();
 
   const toggleLanguage = () => {
-    const nextLang = i18n.language === 'en' ? 'de' : 'en';
-    i18n.changeLanguage(nextLang);
+    i18n.changeLanguage(i18n.language === 'en' ? 'de' : 'en');
   };
 
   return (

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Building, Mail, Building2, ShieldCheck, Wifi, Coffee, Star, Car, Paintbrush, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, Building, Building2, ShieldCheck, Wifi, Coffee, Star, Car, Paintbrush, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -155,6 +155,13 @@ export default function Offices() {
     );
   };
 
+  interface PriceOption {
+    label: string;
+    price: string;
+    isOccupied?: boolean;
+    hideStatus?: boolean;
+  }
+
   const plans = [
     {
       title: t('offices.plans.private.title'),
@@ -165,7 +172,7 @@ export default function Offices() {
         { label: t('offices.plans.private.label4'), price: "2'600.- / " + t('offices.plans.private.month') },
         { label: t('offices.plans.private.label6'), price: "3'850.- / " + t('offices.plans.private.month') },
         { label: t('offices.plans.private.label8'), price: "5'500.- / " + t('offices.plans.private.month') }
-      ],
+      ] as PriceOption[],
       icon: <Building size={28} strokeWidth={1.5} />,
       features: t('offices.plans.private.features', { returnObjects: true }) as string[]
     },
@@ -175,7 +182,7 @@ export default function Offices() {
       subdesc: t('offices.plans.corporate.subdesc'),
       prices: [
         { label: t('offices.plans.corporate.label'), price: t('offices.plans.corporate.price'), hideStatus: true }
-      ],
+      ] as PriceOption[],
       icon: <Building2 size={28} strokeWidth={1.5} />,
       features: t('offices.plans.corporate.features', { returnObjects: true }) as string[]
     }
