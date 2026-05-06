@@ -1,38 +1,37 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Building, Mail, Building2, ShieldCheck, Wifi, Coffee, Star, Car, Paintbrush } from 'lucide-react';
+import { ArrowRight, Clock, Shield, Monitor, ShieldCheck, Wifi, Coffee, Star, Car, Paintbrush, Mail, Building2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-export default function Offices() {
+export default function OpenSpace() {
   const plans = [
     {
-      title: "Private Office",
-      desc: "4- or 6-person office, 24/7 badge access.",
-      subdesc: "20m² for max. 4 people",
+      title: "Daypass / Test Day",
+      desc: "At Resilient and/or Resident from 08:30 to 17:30.",
       prices: [
-        { label: "4-person from", price: "2'650.- / Month" }
+        { label: "Full Day", price: "35.-" },
+        { label: "Half Day", price: "20.-" }
       ],
-      icon: <Building size={28} strokeWidth={1.5} />,
-      features: ["Fully furnished", "24/7 access", "Meeting room allowance", "Daily cleaning"]
+      icon: <Clock size={28} strokeWidth={1.5} />,
+      features: ["Flexible workspace", "High-speed WiFi", "Premium Coffee/Tea", "Lounge access"]
     },
     {
-      title: "Virtual Office",
-      desc: "Only in combination with Flexdesk.",
-      subdesc: "Own company address, mail storage, further services like mail dispatch, scanning of mail according to offer.",
+      title: "Flexdesk",
+      desc: "24/7 Badge access for ultimate flexibility.",
       prices: [
-        { label: "Pricing", price: "On Request" }
+        { label: "10 Days / Month", price: "380.-" },
+        { label: "15 Days / Month", price: "520.-" }
       ],
-      icon: <Mail size={28} strokeWidth={1.5} />,
-      features: ["Prestigious business address", "Mail handling & forwarding", "Scanning service", "Flexible combination"]
+      icon: <Shield size={28} strokeWidth={1.5} />,
+      features: ["24/7 access", "Badge system", "Mail handling", "Community events"]
     },
     {
-      title: "Corporate Spaces",
-      desc: "Do you need more than 6 workstations?",
-      subdesc: "Office space for up to approx. 25 workstations is our specialty. Tailor-made for your company culture.",
+      title: "Fixdesk",
+      desc: "Your own permanent desk with full business support.",
       prices: [
-        { label: "Pricing", price: "On Request" }
+        { label: "Monthly", price: "725.-" }
       ],
-      icon: <Building2 size={28} strokeWidth={1.5} />,
-      features: ["Custom floorplan", "Branded interior", "Dedicated amenities", "Scalable solutions"]
+      icon: <Monitor size={28} strokeWidth={1.5} />,
+      features: ["Dedicated desk", "24/7 access", "5h Meeting rooms incl.", "Business address incl."]
     }
   ];
 
@@ -44,7 +43,7 @@ export default function Offices() {
         "High speed fiber optic internet connection",
         "Laser Printer and highspeed-scanner",
         "Phone booths and lounge areas on each floor",
-        "Address can be used as official business address, postal service to your door"
+        "Address can be used as official business address, postal service to your desk (fixdesk only)"
       ]
     },
     {
@@ -62,7 +61,7 @@ export default function Offices() {
       title: "Access & Security",
       icon: <ShieldCheck size={28} strokeWidth={1.5} />,
       items: [
-        "Access to the premises 24/7",
+        "Access to the premises 24/7 (fixdesk only)",
         "Security badge system to the entrance doors",
         "Access to the Resident 9 - 5pm, if no events",
         "In-house facility and support team"
@@ -72,8 +71,8 @@ export default function Offices() {
       title: "Exclusive Perks",
       icon: <Star size={28} strokeWidth={1.5} />,
       items: [
-        "4h per desk Meetingroom-allowance (additional hours with 25% discount)",
-        "Discount on the rental of the Resident Eventlocation (for up to 250 people)",
+        "4h per desk Meetingroom-allowance (fixdesk only, additional hours 25% discount)",
+        "Discount on the rental of the Resident Eventlocation (fixdesk only, for up to 250 people)",
         "25% off drinks at the Resident"
       ]
     }
@@ -92,10 +91,10 @@ export default function Offices() {
             style={{ maxWidth: '800px' }}
           >
             <h1 style={{ fontSize: 'clamp(3.5rem, 6vw, 5.5rem)', color: 'var(--color-text-dark)', marginBottom: '1.5rem', lineHeight: 1 }}>
-              Private Offices.
+              Open Space.
             </h1>
             <p style={{ fontSize: '1.25rem', color: 'var(--color-text-muted)', lineHeight: 1.6, maxWidth: '600px' }}>
-              Your own private sanctuary in the heart of Zurich. Enjoy the privacy of a dedicated office with all the premium amenities of our boutique collection.
+              Flexible coworking solutions for creative professionals and growing teams. Choose the plan that fits your rhythm.
             </p>
           </motion.div>
         </div>
@@ -129,9 +128,8 @@ export default function Offices() {
               {/* Info Column */}
               <div>
                 <h2 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--color-text-dark)', fontFamily: 'var(--font-serif)' }}>{plan.title}</h2>
-                <div style={{ color: 'var(--color-text-dark)', fontSize: '1.1rem', fontWeight: 500, marginBottom: '0.5rem' }}>{plan.desc}</div>
-                <p style={{ color: 'var(--color-text-muted)', fontSize: '0.95rem', lineHeight: 1.5, maxWidth: '400px' }}>
-                  {plan.subdesc}
+                <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', lineHeight: 1.5, maxWidth: '400px' }}>
+                  {plan.desc}
                 </p>
               </div>
 
@@ -140,9 +138,7 @@ export default function Offices() {
                 {plan.prices.map((p, i) => (
                   <div key={i} style={{ marginBottom: i === plan.prices.length - 1 ? 0 : '1rem' }}>
                     <div style={{ fontSize: '0.75rem', color: 'var(--color-text-muted)', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '0.25rem' }}>{p.label}</div>
-                    <div style={{ fontSize: '1.75rem', fontWeight: 600, color: 'var(--color-text-dark)' }}>
-                      {p.price.includes('CHF') ? p.price : (p.price === 'On Request' ? p.price : `CHF ${p.price}`)}
-                    </div>
+                    <div style={{ fontSize: '1.75rem', fontWeight: 600, color: 'var(--color-text-dark)' }}>CHF {p.price}</div>
                   </div>
                 ))}
               </div>
@@ -252,16 +248,6 @@ export default function Offices() {
             </motion.div>
 
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem', color: 'var(--color-accent-terra)' }}>
-                <Paintbrush size={24} strokeWidth={1.5} />
-                <h3 style={{ fontSize: '1.25rem', margin: 0, color: 'var(--color-text-dark)', fontWeight: 600 }}>Interior Design</h3>
-              </div>
-              <p style={{ color: 'var(--color-text-muted)', fontSize: '1.1rem', lineHeight: 1.6, margin: 0 }}>
-                Interior design services to upgrade offices and reflect your corporate identity.
-              </p>
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '1.5rem', color: 'var(--color-accent-terra)' }}>
                 <Star size={24} strokeWidth={1.5} />
                 <h3 style={{ fontSize: '1.25rem', margin: 0, color: 'var(--color-text-dark)', fontWeight: 600 }}>Event Consulting</h3>

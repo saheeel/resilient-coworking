@@ -28,8 +28,9 @@ export default function Navbar() {
           <img src="/resilientlogo.png" alt="Resilient Studios" className="logo-img" />
         </Link>
         <nav className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''}`}>
+          <Link to="/about" className="nav-link" onClick={() => setMobileMenuOpen(false)}>About Us</Link>
+          <Link to="/open-space" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Open Space</Link>
           <Link to="/offices" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Private Offices</Link>
-          <Link to="/services" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Services</Link>
           <Link to="/location" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Location</Link>
           {/* Mobile only Book Tour link */}
           <Link to="/contact" className="nav-link" style={{ display: mobileMenuOpen ? 'block' : 'none', color: 'var(--color-accent-terra)' }} onClick={() => setMobileMenuOpen(false)}>Book a Tour</Link>
