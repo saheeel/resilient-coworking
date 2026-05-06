@@ -30,6 +30,7 @@ export default function Navbar() {
         <nav className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''}`}>
           <NavLink to="/open-space" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Open Space</NavLink>
           <NavLink to="/offices" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Private Offices</NavLink>
+          <NavLink to="/meeting-rooms" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Meeting Rooms</NavLink>
           <NavLink to="/location" className="nav-link" onClick={() => setMobileMenuOpen(false)}>Location</NavLink>
           <NavLink to="/about" className="nav-link" onClick={() => setMobileMenuOpen(false)}>About Us</NavLink>
           {/* Classy Mobile Book Tour Link - Only visible in mobile menu */}

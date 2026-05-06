@@ -6,6 +6,7 @@ import Location from './pages/Location';
 import About from './pages/About';
 import OpenSpace from './pages/OpenSpace';
 import Offices from './pages/Offices';
+import MeetingRooms from './pages/MeetingRooms';
 import Contact from './pages/Contact';
 import ScrollToTop from './components/ScrollToTop';
 import './App.css';
@@ -21,6 +22,7 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/open-space" element={<OpenSpace />} />
           <Route path="/offices" element={<Offices />} />
+          <Route path="/meeting-rooms" element={<MeetingRooms />} />
           <Route path="/location" element={<Location />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>

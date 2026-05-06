@@ -82,73 +82,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* The Story Section */}
-      <section id="coworking" className="story-section" style={{ padding: 'var(--space-xl) 0', backgroundColor: 'var(--color-bg-white)' }}>
-        <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 400px), 1fr))', gap: '4rem', alignItems: 'center' }}>
-            
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              style={{ position: 'relative' }}
-            >
-              <div style={{ borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}>
-                <img src="/assets/heroimage3.jpg" alt="Boutique Environment" style={{ width: '100%', height: '600px', objectFit: 'cover' }} />
-              </div>
-              <div style={{ 
-                position: 'absolute', 
-                bottom: '20px', 
-                right: '20px', 
-                backgroundColor: 'var(--color-bg-sage)', 
-                color: 'var(--color-bg-white)',
-                padding: '2rem',
-                borderRadius: '24px',
-                maxWidth: 'calc(100% - 40px)',
-                width: '320px',
-                boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
-              }}>
-                <h3 style={{ color: 'var(--color-bg-white)', marginBottom: '0.5rem', fontSize: '1.25rem' }}>Family-Run.</h3>
-                <p style={{ color: 'rgba(255,255,255,0.8)', fontSize: '0.9rem', lineHeight: 1.5 }}>
-                  Managed and operated by a dedicated 20-person team, ensuring a personal touch in every detail.
-                </p>
-              </div>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', fontSize: '1.125rem', color: 'var(--color-text-dark)', lineHeight: 1.8 }}
-            >
-              <h2 style={{ fontSize: 'clamp(2rem, 3.5vw, 2.5rem)', lineHeight: 1.2, marginBottom: '1.5rem', color: 'var(--color-text-dark)' }}>
-                The perfect balance of <span style={{ color: 'var(--color-accent-terra)' }}>privacy</span> and community.
-              </h2>
-              
-              <p>
-                Spread across 3 neighboring buildings, our <strong>7 uniquely furnished boutiques</strong> offer a refreshing alternative to traditional offices. Maintain your own private sanctuary while staying connected to an inspiring network of professionals.
-              </p>
-
-              <div style={{ backgroundColor: 'var(--color-bg-beige)', padding: '1.5rem 2rem', borderRadius: '16px', margin: '1rem 0', borderLeft: '4px solid var(--color-bg-sage)' }}>
-                <p style={{ fontSize: '1.05rem', margin: 0, lineHeight: 1.6 }}>
-                  <strong>The Luxury of Focus:</strong> Say goodbye to cleaning schedules, Wi-Fi issues, and package deliveries. Experience an all-inclusive, <em>hotel-like service</em> that lets your team focus purely on what matters.
-                </p>
-              </div>
-
-              <p>
-                Beyond your private studio, enjoy access to professionally equipped meeting rooms, modern kitchenettes, private showers, and our award-winning working café. 
-              </p>
-              
-              <p>
-                Located just <strong>two minutes from Lake Zurich</strong> and five minutes from Stadelhofen station, we provide an appreciative, professional work culture designed to help your business attract top talent and thrive.
-              </p>
-              
-              <Link to="/contact" className="btn btn-primary" style={{ alignSelf: 'flex-start', marginTop: '1rem' }}>Experience It Yourself</Link>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* Office Types Preview Section */}
       <section id="memberships" className="offices-preview" style={{ padding: 'var(--space-xl) 0', backgroundColor: 'var(--color-bg-white)' }}>
         <div className="container">
@@ -159,27 +92,39 @@ export default function Home() {
             </div>
           </div>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 350px), 1fr))', gap: '2rem', marginTop: '3rem' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 300px), 1fr))', gap: '2rem', marginTop: '3rem' }}>
             <Link to="/open-space" style={{ textDecoration: 'none' }}>
-              <div style={{ backgroundColor: 'rgba(241, 236, 225, 0.5)', padding: '4rem 3rem', borderRadius: '24px', border: '1px solid rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column', height: '100%', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}>
+              <div className="membership-card" style={{ backgroundColor: 'rgba(241, 236, 225, 0.5)', padding: '4rem 3rem', borderRadius: '24px', border: '1px solid rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column', height: '100%', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}>
                 <h3 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--color-text-dark)', fontFamily: 'var(--font-serif)' }}>Open Space</h3>
                 <p style={{ color: 'var(--color-text-muted)', marginBottom: '3rem', fontSize: '1.1rem', flexGrow: 1, lineHeight: 1.6 }}>
                   Perfect for creative professionals. Choose from Daypasses, flexible hot desks, or your own dedicated permanent desk.
                 </p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--color-accent-terra)', fontWeight: 600, fontSize: '1.1rem' }}>
-                  Explore Open Space <ArrowRight size={20} />
+                <div className="explore-link" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--color-accent-terra)', fontWeight: 600, fontSize: '1.1rem', transition: 'gap 0.3s ease' }}>
+                  Explore Open Space <ArrowRight size={20} className="arrow-icon" />
                 </div>
               </div>
             </Link>
 
             <Link to="/offices" style={{ textDecoration: 'none' }}>
-              <div style={{ backgroundColor: 'var(--color-bg-sage)', padding: '4rem 3rem', borderRadius: '24px', display: 'flex', flexDirection: 'column', height: '100%', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}>
+              <div className="membership-card" style={{ backgroundColor: 'var(--color-bg-sage)', padding: '4rem 3rem', borderRadius: '24px', display: 'flex', flexDirection: 'column', height: '100%', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}>
                 <h3 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--color-bg-white)', fontFamily: 'var(--font-serif)' }}>Private Offices</h3>
                 <p style={{ color: 'rgba(255,255,255,0.8)', marginBottom: '3rem', fontSize: '1.1rem', flexGrow: 1, lineHeight: 1.6 }}>
                   Your own private sanctuary in the heart of Zurich. Fully furnished spaces for teams with access to all community perks.
                 </p>
-                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--color-bg-white)', fontWeight: 600, fontSize: '1.1rem' }}>
-                  Explore Private Offices <ArrowRight size={20} />
+                <div className="explore-link" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--color-bg-white)', fontWeight: 600, fontSize: '1.1rem', transition: 'gap 0.3s ease' }}>
+                  Explore Private Offices <ArrowRight size={20} className="arrow-icon" />
+                </div>
+              </div>
+            </Link>
+
+            <Link to="/meeting-rooms" style={{ textDecoration: 'none' }}>
+              <div className="membership-card" style={{ backgroundColor: 'var(--color-bg-white)', padding: '4rem 3rem', borderRadius: '24px', border: '1px solid rgba(0,0,0,0.1)', display: 'flex', flexDirection: 'column', height: '100%', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}>
+                <h3 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--color-text-dark)', fontFamily: 'var(--font-serif)' }}>Meeting Rooms</h3>
+                <p style={{ color: 'var(--color-text-muted)', marginBottom: '3rem', fontSize: '1.1rem', flexGrow: 1, lineHeight: 1.6 }}>
+                  From intimate boardrooms to grand event spaces. Professional stages for your success, fully equipped and serviced.
+                </p>
+                <div className="explore-link" style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--color-accent-terra)', fontWeight: 600, fontSize: '1.1rem', transition: 'gap 0.3s ease' }}>
+                  Explore Meeting Rooms <ArrowRight size={20} className="arrow-icon" />
                 </div>
               </div>
             </Link>
