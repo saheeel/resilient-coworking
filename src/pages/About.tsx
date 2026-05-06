@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Users, Coffee, Sparkles, Heart } from 'lucide-react';
+import { ArrowRight, Users, Sparkles, Heart } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function About() {

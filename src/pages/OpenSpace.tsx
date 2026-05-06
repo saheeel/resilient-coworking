@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ArrowRight, Clock, Shield, Monitor, ShieldCheck, Wifi, Coffee, Star, Car, Paintbrush, Mail, Building2 } from 'lucide-react';
+import { ArrowRight, Clock, Shield, Monitor, ShieldCheck, Wifi, Coffee, Star, Car, Building2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function OpenSpace() {
