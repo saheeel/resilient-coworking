@@ -19,7 +19,7 @@ i18n
             meeting_rooms: "Meeting Rooms",
             location: "Location",
             about_us: "About Us",
-            book_tour: "Book a Tour"
+            contact_us: "Contact Us"
           },
           footer: {
             copyright: "© 2024 Resilient Coworking. All rights reserved.",
@@ -275,7 +275,7 @@ i18n
               }
             },
             cta_title: "Ready to join our community?",
-            cta_btn: "Book a Private Tour"
+            cta_btn: "Contact Us"
           },
           location_page: {
             hero_title: "Location Overview.",
@@ -320,7 +320,7 @@ i18n
             meeting_rooms: "Sitzungszimmer",
             location: "Standort",
             about_us: "Über uns",
-            book_tour: "Tour buchen"
+            contact_us: "Kontaktieren Sie uns"
           },
           footer: {
             copyright: "© 2024 Resilient Coworking. Alle Rechte vorbehalten.",
@@ -576,7 +576,7 @@ i18n
               }
             },
             cta_title: "Bereit, unserer Community beizutreten?",
-            cta_btn: "Eine private Tour buchen"
+            cta_btn: "Kontaktieren Sie uns"
           },
           location_page: {
             hero_title: "Standortübersicht.",

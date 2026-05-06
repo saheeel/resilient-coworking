@@ -51,13 +51,13 @@ export default function Navbar() {
             }} 
             onClick={() => setMobileMenuOpen(false)}
           >
-            {t('nav.book_tour')}
+            {t('nav.contact_us')}
           </Link>
         </nav>
         
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
           <Link to="/contact" className="btn btn-primary btn-sm desktop-only-btn" style={{ textDecoration: 'none' }}>
-            {t('nav.book_tour')}
+            {t('nav.contact_us')}
           </Link>
           <button 
             className="mobile-menu-btn" 
