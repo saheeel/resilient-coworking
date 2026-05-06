@@ -734,4 +734,12 @@
   .upgrades-section p {
     font-size: 0.95rem !important;
   }
+
+  /* Meeting Rooms Mobile Order Reset */
+  .room-image-wrapper {
+    order: 0 !important;
+  }
+  .room-content-wrapper {
+    order: 1 !important;
+  }
 }

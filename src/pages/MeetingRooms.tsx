@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Users, Monitor, Coffee, Car, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Users, Monitor, Coffee, Car, CheckCircle2, ChevronLeft, ChevronRight, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function MeetingRooms() {
@@ -347,12 +347,12 @@ export default function MeetingRooms() {
                 }}
               >
                 {/* Image Wrapper */}
-                <div style={{ order: idx % 2 === 0 ? 0 : 1 }}>
+                <div className="room-image-wrapper" style={{ order: idx % 2 === 0 ? 0 : 1 }}>
                   <RoomCarousel images={room.images} title={room.title} capacity={room.capacity} />
                 </div>
 
                 {/* Content Wrapper */}
-                <div style={{ order: idx % 2 === 0 ? 1 : 0, paddingTop: '1rem' }}>
+                <div className="room-content-wrapper" style={{ order: idx % 2 === 0 ? 1 : 0, paddingTop: '1rem' }}>
                   <h2 style={{ 
                     fontSize: 'clamp(2.25rem, 5vw, 3.5rem)', 
                     marginBottom: '1.25rem', 
@@ -394,8 +394,8 @@ export default function MeetingRooms() {
                     </div>
                   </div>
 
-                  <Link to="/contact" className="btn btn-primary" style={{ padding: '1.25rem 3rem' }}>
-                    Request Booking
+                  <Link to="/contact" className="btn btn-primary" style={{ padding: '1rem 2.2rem', fontSize: '0.9rem', display: 'inline-flex', alignItems: 'center', gap: '0.75rem' }}>
+                    Request Booking <ArrowRight size={18} />
                   </Link>
                 </div>
               </motion.div>
