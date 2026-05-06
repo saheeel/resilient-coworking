@@ -100,6 +100,36 @@ export default function OpenSpace() {
         </div>
       </section>
 
+      {/* Image Showcase */}
+      <section className="container" style={{ paddingBottom: '8rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 400px), 1fr))', gap: '2rem' }}>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <img 
+              src="/openspace/openspace1.jpg" 
+              alt="Resilient Open Space View 1" 
+              style={{ width: '100%', height: 'max(400px, 45vh)', objectFit: 'cover', borderRadius: '24px' }}
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+          >
+            <img 
+              src="/openspace/openspace2.jpg" 
+              alt="Resilient Open Space View 2" 
+              style={{ width: '100%', height: 'max(400px, 45vh)', objectFit: 'cover', borderRadius: '24px' }}
+            />
+          </motion.div>
+        </div>
+      </section>
+
       {/* Pricing Section */}
       <section className="container" style={{ paddingBottom: '8rem' }}>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
