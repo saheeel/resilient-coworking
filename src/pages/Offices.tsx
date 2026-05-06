@@ -1,8 +1,26 @@
-import { motion } from 'framer-motion';
-import { ArrowRight, Building, Mail, Building2, ShieldCheck, Wifi, Coffee, Star, Car, Paintbrush } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Building, Mail, Building2, ShieldCheck, Wifi, Coffee, Star, Car, Paintbrush, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function Offices() {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const officeImages = [
+    '/private-office/IMG_1831-HDR.jpg',
+    '/private-office/IMG_3948-HDR.jpg',
+    '/private-office/IMG_4877.jpg',
+    '/private-office/img_4800-plant.jpg.jpg'
+  ];
+
+  const nextImage = () => setCurrentImageIndex((prev) => (prev + 1) % officeImages.length);
+  const prevImage = () => setCurrentImageIndex((prev) => (prev - 1 + officeImages.length) % officeImages.length);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      nextImage();
+    }, 4000);
+    return () => clearInterval(timer);
+  }, []);
   const plans = [
     {
       title: "Private Office",
@@ -80,10 +98,10 @@ export default function Offices() {
   ];
 
   return (
-    <main style={{ backgroundColor: 'var(--color-bg-beige)', minHeight: '100vh', paddingBottom: '0' }}>
+    <main className="page-offices" style={{ backgroundColor: 'var(--color-bg-beige)', minHeight: '100vh', paddingBottom: '0' }}>
       
       {/* Hero Section */}
-      <section style={{ paddingTop: 'max(180px, 20vh)', paddingBottom: '6rem' }}>
+      <section className="page-hero" style={{ paddingTop: 'max(180px, 20vh)', paddingBottom: '6rem' }}>
         <div className="container">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -98,11 +116,68 @@ export default function Offices() {
               Your own private sanctuary in the heart of Zurich. Enjoy the privacy of a dedicated office with all the premium amenities of our boutique collection.
             </p>
           </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            style={{ margin: '4rem auto 0', position: 'relative', width: '100%', maxWidth: '1000px', aspectRatio: '16/9', maxHeight: '70vh', borderRadius: '24px', overflow: 'hidden', boxShadow: '0 20px 40px rgba(0,0,0,0.1)' }}
+          >
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={currentImageIndex}
+                src={officeImages[currentImageIndex]}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', position: 'absolute', top: 0, left: 0 }}
+                alt={`Private Office View ${currentImageIndex + 1}`}
+              />
+            </AnimatePresence>
+            
+            {/* Carousel Controls */}
+            <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0 2rem', pointerEvents: 'none' }}>
+              <button 
+                onClick={prevImage}
+                style={{ pointerEvents: 'auto', background: 'rgba(255,255,255,0.8)', border: 'none', borderRadius: '50%', width: '50px', height: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', backdropFilter: 'blur(10px)', transition: 'background 0.3s ease' }}
+                className="hover-bg-white"
+              >
+                <ChevronLeft size={24} color="var(--color-text-dark)" />
+              </button>
+              <button 
+                onClick={nextImage}
+                style={{ pointerEvents: 'auto', background: 'rgba(255,255,255,0.8)', border: 'none', borderRadius: '50%', width: '50px', height: '50px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', backdropFilter: 'blur(10px)', transition: 'background 0.3s ease' }}
+                className="hover-bg-white"
+              >
+                <ChevronRight size={24} color="var(--color-text-dark)" />
+              </button>
+            </div>
+            
+            {/* Dots */}
+            <div style={{ position: 'absolute', bottom: '2rem', left: 0, width: '100%', display: 'flex', justifyContent: 'center', gap: '0.5rem' }}>
+              {officeImages.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setCurrentImageIndex(idx)}
+                  style={{
+                    width: '10px',
+                    height: '10px',
+                    borderRadius: '50%',
+                    background: currentImageIndex === idx ? 'white' : 'rgba(255,255,255,0.5)',
+                    border: 'none',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease'
+                  }}
+                />
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 
       {/* Pricing Section */}
-      <section className="container" style={{ paddingBottom: '8rem' }}>
+      <section className="container pricing-section" style={{ paddingBottom: '8rem' }}>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           {plans.map((plan, idx) => (
             <motion.div 
@@ -111,15 +186,7 @@ export default function Offices() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.6 }}
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '80px 1.5fr 1fr 1fr',
-                gap: '3rem',
-                alignItems: 'center',
-                padding: '4rem 0',
-                borderBottom: '1px solid rgba(0,0,0,0.1)',
-                position: 'relative'
-              }}
+              className="pricing-row"
             >
               {/* Icon Column */}
               <div style={{ color: 'var(--color-accent-terra)' }}>
@@ -148,7 +215,7 @@ export default function Offices() {
               </div>
 
               {/* CTA Column */}
-              <div style={{ textAlign: 'right' }}>
+              <div className="pricing-row-cta" style={{ textAlign: 'right' }}>
                 <Link 
                   to="/contact" 
                   className="btn btn-primary" 
@@ -172,7 +239,7 @@ export default function Offices() {
       </section>
 
       {/* Included Services (Sage Green) */}
-      <section style={{ backgroundColor: 'var(--color-bg-sage)', padding: '8rem 0' }}>
+      <section className="services-section" style={{ backgroundColor: 'var(--color-bg-sage)', padding: '8rem 0' }}>
         <div className="container">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -216,7 +283,7 @@ export default function Offices() {
       </section>
 
       {/* Optional Upgrades */}
-      <section style={{ backgroundColor: 'var(--color-bg-white)', padding: '8rem 0' }}>
+      <section className="upgrades-section" style={{ backgroundColor: 'var(--color-bg-white)', padding: '8rem 0' }}>
         <div className="container">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}

@@ -87,6 +87,10 @@
   width: 100%;
 }
 
+.nav-link.active {
+  font-weight: 700;
+}
+
 .btn-sm {
   padding: 0.6rem 1.25rem;
   font-size: 0.75rem;
@@ -299,12 +303,15 @@
   color: rgba(255, 255, 255, 0.5);
 }
 
-/* Responsive */
+/* ============================================================
+   RESPONSIVE — MOBILE-FIRST HOMEPAGE REDESIGN
+   ============================================================ */
 @media (max-width: 900px) {
+  /* --- HEADER --- */
   .header {
     top: 0;
   }
-  
+
   .header-inner {
     width: 100%;
     border-radius: 0;
@@ -316,7 +323,7 @@
   .header.scrolled .header-inner {
     border-bottom-color: rgba(0,0,0,0.1);
   }
-  
+
   .logo-img {
     height: 32px;
   }
@@ -325,43 +332,45 @@
     display: none;
   }
 
-  .hero {
-    grid-template-columns: 1fr;
-    min-height: auto;
-  }
-  
-  .hero-image-wrapper {
-    min-height: 50vh;
-  }
-  
-  .event-teaser-inner {
-    grid-template-columns: 1fr;
-  }
-  
-  .footer-top {
-    grid-template-columns: 1fr;
-  }
-  
+  /* --- NAVIGATION OVERLAY --- */
   .nav-links {
     display: none;
   }
-  
+
   .nav-links.mobile-open {
     display: flex;
     flex-direction: column;
-    position: absolute;
-    top: 100%;
+    position: fixed;
+    top: 0;
     left: 0;
     width: 100%;
-    background: var(--color-bg-white);
-    padding: 2rem;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-    align-items: flex-start;
+    height: 100dvh;
+    background: var(--color-bg-beige);
+    padding: 7rem 2rem 3rem;
+    align-items: center;
+    justify-content: center;
+    z-index: 90;
+    gap: 2rem;
+    opacity: 0;
+    animation: fadeIn 0.4s ease forwards;
   }
-  
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
   .nav-links.mobile-open .nav-link {
     color: var(--color-text-dark);
-    font-size: 1.25rem;
+    font-size: 2.25rem;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-links.mobile-open .nav-link.active {
+    font-weight: 700;
   }
 
   .mobile-menu-btn {
@@ -376,18 +385,332 @@
     color: white;
   }
 
-  /* Shared Responsive Grids */
+  /* --- HERO — IMMERSIVE FULL-BLEED --- */
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: 100dvh;
+    position: relative;
+  }
+
+  .hero-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    padding: 2rem 1.5rem 3rem;
+    background: linear-gradient(
+      to top,
+      rgba(43, 41, 42, 0.95) 0%,
+      rgba(43, 41, 42, 0.7) 50%,
+      transparent 100%
+    );
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  .hero-content h1 {
+    font-size: 2.5rem !important;
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .hero-content p {
+    font-size: 0.95rem !important;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 1.25rem;
+    max-width: 100%;
+  }
+
+  .hero-image-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+
+  .hero-image {
+    object-position: center center;
+  }
+
+  .hero-image-wrapper::after {
+    background: rgba(0, 0, 0, 0.15);
+  }
+
+  /* --- STORY SECTION --- */
+  .story-section {
+    padding: 3.5rem 0 !important;
+  }
+
+  .story-section .container > div {
+    gap: 2.5rem !important;
+  }
+
+  .story-section img {
+    height: 350px !important;
+    border-radius: 20px;
+  }
+
+  .story-section h2 {
+    font-size: 1.75rem !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .story-section p {
+    font-size: 1rem !important;
+    line-height: 1.7 !important;
+  }
+
+  /* --- MEMBERSHIPS SECTION --- */
+  .offices-preview {
+    padding: 3.5rem 0 !important;
+  }
+
+  .offices-preview .section-header {
+    margin-bottom: 1rem !important;
+  }
+
+  .offices-preview .section-header h2 {
+    font-size: 2rem !important;
+  }
+
+  .offices-preview .section-header p {
+    font-size: 1.05rem !important;
+  }
+
+  /* --- SHARED RESPONSIVE GRIDS --- */
   .responsive-grid-2 {
     grid-template-columns: 1fr !important;
   }
-  
+
   .responsive-order-reset {
     order: 0 !important;
+  }
+
+  /* --- PRICING ROWS --- */
+  .pricing-row {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 2.5rem 0;
+    text-align: left;
+  }
+
+  .pricing-row-cta {
+    text-align: left !important;
+    margin-top: 0.5rem;
+  }
+
+  /* --- EVENT TEASER --- */
+  .event-teaser-inner {
+    grid-template-columns: 1fr;
+  }
+
+  /* --- FOOTER --- */
+  .footer-top {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
   }
 }
 
 @media (min-width: 901px) {
   .mobile-menu-btn {
     display: none;
+  }
+}
+
+.pricing-row {
+  display: grid;
+  grid-template-columns: 80px 1.5fr 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  padding: 4rem 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.mobile-only-link {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .mobile-only-link {
+    display: block !important;
+  }
+  .desktop-only-btn {
+    display: none !important;
+  }
+
+  /* ===========================================================
+     OPEN SPACE & PRIVATE OFFICES — MOBILE REDESIGN
+     =========================================================== */
+
+  /* --- Page Hero (shared by both pages) --- */
+  .page-hero {
+    padding-top: 120px !important;
+    padding-bottom: 3rem !important;
+  }
+
+  .page-hero h1 {
+    font-size: clamp(2.25rem, 8vw, 3rem) !important;
+    margin-bottom: 1rem !important;
+  }
+
+  .page-hero p {
+    font-size: 1.05rem !important;
+    line-height: 1.6;
+  }
+
+  /* --- Image Showcase (Open Space) --- */
+  .image-showcase {
+    padding-bottom: 3rem !important;
+  }
+
+  .image-showcase img {
+    height: 280px !important;
+    min-height: unset !important;
+    border-radius: 16px !important;
+  }
+
+  .image-showcase > div {
+    gap: 1rem !important;
+  }
+
+  /* --- Image Carousel (Private Offices) --- */
+  .page-offices .page-hero > .container > div:last-child {
+    margin-top: 2rem !important;
+    border-radius: 16px !important;
+    max-height: 300px !important;
+  }
+
+  /* Carousel nav buttons smaller on mobile */
+  .page-offices .page-hero button {
+    width: 40px !important;
+    height: 40px !important;
+  }
+
+  /* --- Pricing Section --- */
+  .pricing-section {
+    padding-bottom: 3rem !important;
+  }
+
+  .pricing-row {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1.5rem !important;
+    padding: 2.5rem 0 !important;
+  }
+
+  .pricing-row > div:first-child {
+    margin-bottom: -1rem !important;
+  }
+
+  .pricing-row h2 {
+    font-size: 2rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  .pricing-row p,
+  .pricing-row .pricing-row div {
+    font-size: 1.05rem !important;
+  }
+
+  .pricing-row > div:nth-child(3) {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  .pricing-row > div:nth-child(3) > div {
+    margin-bottom: 0 !important;
+  }
+
+  .pricing-row-cta {
+    width: 100% !important;
+    text-align: left !important;
+    margin-top: 1rem !important;
+  }
+
+  .pricing-row-cta .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 1rem 2rem !important;
+    font-size: 1rem !important;
+  }
+
+  /* --- Services Section (Sage Green) --- */
+  .services-section {
+    padding: 3.5rem 0 !important;
+  }
+
+  .services-section > .container > div:first-child {
+    margin-bottom: 2.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  .services-section h2 {
+    font-size: 2rem !important;
+  }
+
+  .services-section > .container > div:first-child p {
+    font-size: 1.05rem !important;
+  }
+
+  .services-section > .container > div:last-child {
+    gap: 2.5rem !important;
+  }
+
+  .services-section h3 {
+    font-size: 1.25rem !important;
+  }
+
+  .services-section li {
+    font-size: 0.95rem !important;
+  }
+
+  .services-section ul {
+    gap: 1rem !important;
+  }
+
+  /* --- Optional Upgrades Section --- */
+  .upgrades-section {
+    padding: 3.5rem 0 !important;
+  }
+
+  .upgrades-section > .container > div:first-child {
+    margin-bottom: 2.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  .upgrades-section h2 {
+    font-size: 2rem !important;
+  }
+
+  .upgrades-section > .container > div:first-child p {
+    font-size: 1.05rem !important;
+  }
+
+  .upgrades-section > .container > div:last-child {
+    gap: 2.5rem !important;
+  }
+
+  .upgrades-section h3 {
+    font-size: 1.1rem !important;
+  }
+
+  .upgrades-section p {
+    font-size: 0.95rem !important;
   }
 }

@@ -79,10 +79,10 @@ export default function OpenSpace() {
   ];
 
   return (
-    <main style={{ backgroundColor: 'var(--color-bg-beige)', minHeight: '100vh', paddingBottom: '0' }}>
+    <main className="page-openspace" style={{ backgroundColor: 'var(--color-bg-beige)', minHeight: '100vh', paddingBottom: '0' }}>
       
       {/* Hero Section */}
-      <section style={{ paddingTop: 'max(180px, 20vh)', paddingBottom: '6rem' }}>
+      <section className="page-hero" style={{ paddingTop: 'max(180px, 20vh)', paddingBottom: '6rem' }}>
         <div className="container">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -101,7 +101,7 @@ export default function OpenSpace() {
       </section>
 
       {/* Image Showcase */}
-      <section className="container" style={{ paddingBottom: '8rem' }}>
+      <section className="container image-showcase" style={{ paddingBottom: '8rem' }}>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 400px), 1fr))', gap: '2rem' }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -131,7 +131,7 @@ export default function OpenSpace() {
       </section>
 
       {/* Pricing Section */}
-      <section className="container" style={{ paddingBottom: '8rem' }}>
+      <section className="container pricing-section" style={{ paddingBottom: '8rem' }}>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           {plans.map((plan, idx) => (
             <motion.div 
@@ -140,15 +140,7 @@ export default function OpenSpace() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.6 }}
-              style={{
-                display: 'grid',
-                gridTemplateColumns: '80px 1.5fr 1fr 1fr',
-                gap: '3rem',
-                alignItems: 'center',
-                padding: '4rem 0',
-                borderBottom: '1px solid rgba(0,0,0,0.1)',
-                position: 'relative'
-              }}
+              className="pricing-row"
             >
               {/* Icon Column */}
               <div style={{ color: 'var(--color-accent-terra)' }}>
@@ -174,7 +166,7 @@ export default function OpenSpace() {
               </div>
 
               {/* CTA Column */}
-              <div style={{ textAlign: 'right' }}>
+              <div className="pricing-row-cta" style={{ textAlign: 'right' }}>
                 <Link 
                   to="/contact" 
                   className="btn btn-primary" 
@@ -198,7 +190,7 @@ export default function OpenSpace() {
       </section>
 
       {/* Included Services (Sage Green) */}
-      <section style={{ backgroundColor: 'var(--color-bg-sage)', padding: '8rem 0' }}>
+      <section className="services-section" style={{ backgroundColor: 'var(--color-bg-sage)', padding: '8rem 0' }}>
         <div className="container">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
@@ -242,7 +234,7 @@ export default function OpenSpace() {
       </section>
 
       {/* Optional Upgrades */}
-      <section style={{ backgroundColor: 'var(--color-bg-white)', padding: '8rem 0' }}>
+      <section className="upgrades-section" style={{ backgroundColor: 'var(--color-bg-white)', padding: '8rem 0' }}>
         <div className="container">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}

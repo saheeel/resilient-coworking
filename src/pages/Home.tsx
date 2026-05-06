@@ -46,8 +46,7 @@ export default function Home() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
             style={{ display: 'flex', gap: '1rem', marginTop: '2rem' }}
           >
-            <button className="btn btn-primary" style={{ backgroundColor: 'var(--color-bg-beige)', color: 'var(--color-bg-sage)' }}>Explore Spaces</button>
-            <button className="btn btn-outline" style={{ borderColor: 'var(--color-bg-beige)', color: 'var(--color-bg-beige)' }}>Join Community</button>
+            <a href="#memberships" className="btn btn-primary" style={{ backgroundColor: 'var(--color-bg-beige)', color: 'var(--color-bg-sage)', textDecoration: 'none', display: 'inline-flex', alignItems: 'center' }}>Explore Spaces</a>
           </motion.div>
         </div>
         <div className="hero-image-wrapper">
@@ -83,13 +82,14 @@ export default function Home() {
               </div>
               <div style={{ 
                 position: 'absolute', 
-                bottom: '-30px', 
-                right: '-30px', 
+                bottom: '20px', 
+                right: '20px', 
                 backgroundColor: 'var(--color-bg-sage)', 
                 color: 'var(--color-bg-white)',
                 padding: '2rem',
                 borderRadius: '24px',
-                maxWidth: '280px',
+                maxWidth: 'calc(100% - 40px)',
+                width: '320px',
                 boxShadow: '0 10px 30px rgba(0,0,0,0.1)'
               }}>
                 <h3 style={{ color: 'var(--color-bg-white)', marginBottom: '0.5rem', fontSize: '1.25rem' }}>Family-Run.</h3>
@@ -134,67 +134,39 @@ export default function Home() {
       </section>
 
       {/* Office Types Preview Section */}
-      <section className="offices-preview" style={{ padding: 'var(--space-xl) 0', backgroundColor: 'var(--color-bg-white)' }}>
+      <section id="memberships" className="offices-preview" style={{ padding: 'var(--space-xl) 0', backgroundColor: 'var(--color-bg-white)' }}>
         <div className="container">
-          <div className="section-header">
-            <div>
-              <h2>Our Memberships & Workspaces.</h2>
-              <p>Flexible options designed for individuals and teams.</p>
+          <div className="section-header" style={{ marginBottom: '2rem' }}>
+            <div style={{ maxWidth: '600px' }}>
+              <h2 style={{ fontSize: 'clamp(2.5rem, 4vw, 3.5rem)', lineHeight: 1.1, marginBottom: '1rem', color: 'var(--color-text-dark)' }}>Our Memberships & Workspaces.</h2>
+              <p style={{ fontSize: '1.25rem', color: 'var(--color-text-muted)' }}>Flexible options designed for individuals and teams.</p>
             </div>
-            <Link to="/offices" className="btn btn-outline">View All Options</Link>
           </div>
           
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: '2rem', marginTop: '3rem' }}>
-            {/* Daypass */}
-            <div style={{ backgroundColor: 'rgba(241, 236, 225, 0.3)', padding: '3rem 2rem', textAlign: 'center', display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <h3 style={{ fontSize: '1.75rem', marginBottom: '1rem' }}>Daypass / Test Day</h3>
-              <p style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', marginBottom: '2rem', flexGrow: 1 }}>
-                In the Resilient and/or Resident from 08:30 a.m. to 05:30 p.m.
-              </p>
-              <div style={{ fontWeight: 600, fontSize: '1.125rem', marginBottom: '2rem' }}>
-                35.- / day<br/>
-                20.- / half day
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 350px), 1fr))', gap: '2rem', marginTop: '3rem' }}>
+            <Link to="/open-space" style={{ textDecoration: 'none' }}>
+              <div style={{ backgroundColor: 'rgba(241, 236, 225, 0.5)', padding: '4rem 3rem', borderRadius: '24px', border: '1px solid rgba(0,0,0,0.05)', display: 'flex', flexDirection: 'column', height: '100%', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}>
+                <h3 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--color-text-dark)', fontFamily: 'var(--font-serif)' }}>Open Space</h3>
+                <p style={{ color: 'var(--color-text-muted)', marginBottom: '3rem', fontSize: '1.1rem', flexGrow: 1, lineHeight: 1.6 }}>
+                  Perfect for creative professionals. Choose from Daypasses, flexible hot desks, or your own dedicated permanent desk.
+                </p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--color-accent-terra)', fontWeight: 600, fontSize: '1.1rem' }}>
+                  Explore Open Space <ArrowRight size={20} />
+                </div>
               </div>
-              <button className="btn btn-primary" style={{ width: '100%' }}>Inquiries</button>
-            </div>
+            </Link>
 
-            {/* Flexdesk */}
-            <div style={{ backgroundColor: 'rgba(241, 236, 225, 0.3)', padding: '3rem 2rem', textAlign: 'center', display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <h3 style={{ fontSize: '1.75rem', marginBottom: '1rem' }}>Flexdesk</h3>
-              <p style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', marginBottom: '2rem', flexGrow: 1 }}>
-                7×24 Badge Access
-              </p>
-              <div style={{ fontWeight: 600, fontSize: '1.125rem', marginBottom: '2rem' }}>
-                10 days / month: 380.-<br/>
-                15 days / month: 520.-
+            <Link to="/offices" style={{ textDecoration: 'none' }}>
+              <div style={{ backgroundColor: 'var(--color-bg-sage)', padding: '4rem 3rem', borderRadius: '24px', display: 'flex', flexDirection: 'column', height: '100%', transition: 'transform 0.3s ease, box-shadow 0.3s ease' }}>
+                <h3 style={{ fontSize: '2.5rem', marginBottom: '1rem', color: 'var(--color-bg-white)', fontFamily: 'var(--font-serif)' }}>Private Offices</h3>
+                <p style={{ color: 'rgba(255,255,255,0.8)', marginBottom: '3rem', fontSize: '1.1rem', flexGrow: 1, lineHeight: 1.6 }}>
+                  Your own private sanctuary in the heart of Zurich. Fully furnished spaces for teams with access to all community perks.
+                </p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'var(--color-bg-white)', fontWeight: 600, fontSize: '1.1rem' }}>
+                  Explore Private Offices <ArrowRight size={20} />
+                </div>
               </div>
-              <button className="btn btn-primary" style={{ width: '100%' }}>Inquiries</button>
-            </div>
-
-            {/* Fixdesk */}
-            <div style={{ backgroundColor: 'rgba(241, 236, 225, 0.3)', padding: '3rem 2rem', textAlign: 'center', display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <h3 style={{ fontSize: '1.75rem', marginBottom: '1rem' }}>Fixdesk</h3>
-              <p style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', marginBottom: '2rem', flexGrow: 1 }}>
-                my desk, 7×24 badge access, incl. 5 hours meeting rooms, incl. domicile address
-              </p>
-              <div style={{ fontWeight: 600, fontSize: '1.125rem', marginBottom: '2rem' }}>
-                725.- / month
-              </div>
-              <button className="btn btn-primary" style={{ width: '100%' }}>Inquiries</button>
-            </div>
-
-            {/* Private Office */}
-            <div style={{ backgroundColor: 'rgba(241, 236, 225, 0.3)', padding: '3rem 2rem', textAlign: 'center', display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <h3 style={{ fontSize: '1.75rem', marginBottom: '1rem' }}>Private Office</h3>
-              <p style={{ fontSize: '0.875rem', color: 'var(--color-text-muted)', marginBottom: '2rem', flexGrow: 1 }}>
-                7×24 badge access<br/><br/>
-                <span style={{ fontSize: '0.75rem' }}>20m2 for max. 4 people</span>
-              </p>
-              <div style={{ fontWeight: 600, fontSize: '1.125rem', marginBottom: '2rem' }}>
-                4 people from 2'650.- / month
-              </div>
-              <button className="btn btn-primary" style={{ width: '100%' }}>Inquiries</button>
-            </div>
+            </Link>
           </div>
         </div>
       </section>

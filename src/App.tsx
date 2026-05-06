@@ -7,11 +7,13 @@ import About from './pages/About';
 import OpenSpace from './pages/OpenSpace';
 import Offices from './pages/Offices';
 import Contact from './pages/Contact';
+import ScrollToTop from './components/ScrollToTop';
 import './App.css';
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <div className="app-container">
         <Navbar />
         <Routes>
