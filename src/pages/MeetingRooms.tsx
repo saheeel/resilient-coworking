@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Users, Monitor, Coffee, Car, CheckCircle2 } from 'lucide-react';
+import { Users, Monitor, Coffee, Car, CheckCircle2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function MeetingRooms() {
+  // ... (rooms data remains the same)
   const rooms = [
     {
       title: "THE SEMINAR",
@@ -137,31 +138,47 @@ export default function MeetingRooms() {
 
   const RoomCarousel = ({ images, title, capacity }: { images: string[], title: string, capacity: string }) => {
     const [current, setCurrent] = useState(0);
+    const [isHovered, setIsHovered] = useState(false);
 
     useEffect(() => {
-      if (images.length <= 1) return;
+      if (images.length <= 1 || isHovered) return;
       const timer = setInterval(() => {
         setCurrent((prev) => (prev + 1) % images.length);
-      }, 5000); // Slightly slower for better experience
+      }, 5000);
       return () => clearInterval(timer);
-    }, [images.length]);
+    }, [images.length, isHovered]);
+
+    const next = (e: React.MouseEvent) => {
+      e.stopPropagation();
+      setCurrent((prev) => (prev + 1) % images.length);
+    };
+
+    const prev = (e: React.MouseEvent) => {
+      e.stopPropagation();
+      setCurrent((prev) => (prev - 1 + images.length) % images.length);
+    };
 
     return (
-      <div style={{ 
-        position: 'relative',
-        borderRadius: '24px', 
-        overflow: 'hidden', 
-        boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15)',
-        aspectRatio: '16/10',
-        backgroundColor: '#1a1a1a' // Dark background to prevent white flash
-      }}>
+      <div 
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        style={{ 
+          position: 'relative',
+          borderRadius: '24px', 
+          overflow: 'hidden', 
+          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.15)',
+          aspectRatio: '16/10',
+          backgroundColor: '#1a1a1a',
+          cursor: images.length > 1 ? 'pointer' : 'default'
+        }}
+      >
         <AnimatePresence initial={false}>
           <motion.img 
             key={current}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 1.2, ease: "easeInOut" }}
+            transition={{ duration: 1, ease: "easeInOut" }}
             src={images[current]} 
             alt={title} 
             style={{ 
@@ -174,6 +191,72 @@ export default function MeetingRooms() {
             }} 
           />
         </AnimatePresence>
+
+        {/* Navigation Arrows - Only on Hover */}
+        {images.length > 1 && (
+          <div style={{ 
+            position: 'absolute', 
+            top: 0, 
+            left: 0, 
+            right: 0, 
+            bottom: 0, 
+            display: 'flex', 
+            justifyContent: 'space-between', 
+            alignItems: 'center', 
+            padding: '0 15px',
+            zIndex: 20,
+            pointerEvents: 'none' // Click events handled by buttons
+          }}>
+            <motion.button
+              initial={{ opacity: 0, x: -10 }}
+              animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : -10 }}
+              onClick={prev}
+              style={{ 
+                pointerEvents: 'auto',
+                backgroundColor: 'rgba(255,255,255,0.2)',
+                backdropFilter: 'blur(10px)',
+                border: 'none',
+                width: '36px',
+                height: '36px',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'white',
+                cursor: 'pointer',
+                transition: 'background-color 0.3s ease'
+              }}
+              whileHover={{ backgroundColor: 'rgba(255,255,255,0.4)' }}
+            >
+              <ChevronLeft size={20} />
+            </motion.button>
+
+            <motion.button
+              initial={{ opacity: 0, x: 10 }}
+              animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : 10 }}
+              onClick={next}
+              style={{ 
+                pointerEvents: 'auto',
+                backgroundColor: 'rgba(255,255,255,0.2)',
+                backdropFilter: 'blur(10px)',
+                border: 'none',
+                width: '36px',
+                height: '36px',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                color: 'white',
+                cursor: 'pointer',
+                transition: 'background-color 0.3s ease'
+              }}
+              whileHover={{ backgroundColor: 'rgba(255,255,255,0.4)' }}
+            >
+              <ChevronRight size={20} />
+            </motion.button>
+          </div>
+        )}
+
         <div style={{ 
           position: 'absolute', 
           top: '20px', 
@@ -182,7 +265,7 @@ export default function MeetingRooms() {
           backdropFilter: 'blur(4px)',
           padding: '0.5rem 1.25rem',
           borderRadius: '100px',
-          fontSize: '0.9rem',
+          fontSize: '0.85rem',
           fontWeight: 600,
           color: 'var(--color-text-dark)',
           display: 'flex',
@@ -192,6 +275,7 @@ export default function MeetingRooms() {
         }}>
           <Users size={16} /> {capacity}
         </div>
+        
         {images.length > 1 && (
           <div style={{ 
             position: 'absolute', 
@@ -204,8 +288,8 @@ export default function MeetingRooms() {
           }}>
             {images.map((_, i) => (
               <div key={i} style={{ 
-                width: '8px', 
-                height: '8px', 
+                width: '6px', 
+                height: '6px', 
                 borderRadius: '50%', 
                 backgroundColor: i === current ? 'white' : 'rgba(255,255,255,0.4)',
                 transition: 'all 0.3s ease'
