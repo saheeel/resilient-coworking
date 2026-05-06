@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowRight, Users, Monitor, Maximize, Coffee, Wifi, Clock, Car, MapPin, CheckCircle2 } from 'lucide-react';
+import { Users, Monitor, Coffee, Car, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function MeetingRooms() {
