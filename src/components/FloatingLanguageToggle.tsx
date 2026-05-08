@@ -40,18 +40,19 @@ export default function FloatingLanguageToggle() {
       whileHover={{ scale: 1.1 }}
       whileTap={{ scale: 0.9 }}
       onClick={toggleLanguage}
+      className="desktop-only-toggle"
       style={{
         position: 'fixed',
-        top: '2rem',
+        top: '1.5rem',
         right: '2.5rem',
         zIndex: 9999,
         background: 'rgba(255, 255, 255, 0.15)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
         border: '1px solid rgba(255, 255, 255, 0.2)',
-        width: '48px',
-        height: '48px',
-        borderRadius: '12px',
+        width: '54px',
+        height: '54px',
+        borderRadius: '16px',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',

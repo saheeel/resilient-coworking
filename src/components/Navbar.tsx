@@ -8,7 +8,7 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -37,6 +37,39 @@ export default function Navbar() {
           <NavLink to="/about" className="nav-link" onClick={() => setMobileMenuOpen(false)}>{t('nav.about_us')}</NavLink>
           
 
+          {/* Mobile Language Toggle */}
+          <button 
+            onClick={() => i18n.changeLanguage(i18n.language === 'en' ? 'de' : 'en')}
+            className="mobile-flex-link"
+            style={{ 
+              alignItems: 'center', 
+              justifyContent: 'center',
+              background: 'none', 
+              border: 'none',
+              cursor: 'pointer',
+              marginTop: '1rem',
+              padding: '0.5rem'
+            }}
+          >
+            {i18n.language === 'en' ? (
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 5 3" width="32">
+                <rect width="5" height="3" y="0" fill="#000"/>
+                <rect width="5" height="2" y="1" fill="#D00"/>
+                <rect width="5" height="1" y="2" fill="#FFCE00"/>
+              </svg>
+            ) : (
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30" width="32">
+                <clipPath id="s-mobile">
+                  <path d="M0,0 v30 h60 v-30 z"/>
+                </clipPath>
+                <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" strokeWidth="6"/>
+                <path d="M0,0 L60,30 M60,0 L0,30" stroke="#C8102E" strokeWidth="4" clipPath="url(#s-mobile)"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#fff" strokeWidth="10"/>
+                <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" strokeWidth="6"/>
+              </svg>
+            )}
+          </button>
 
           <Link 
             to="/contact" 

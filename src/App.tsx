@@ -9,9 +9,8 @@ import Offices from './pages/Offices';
 import MeetingRooms from './pages/MeetingRooms';
 import Contact from './pages/Contact';
 import ScrollToTop from './components/ScrollToTop';
-import './App.css';
-
 import FloatingLanguageToggle from './components/FloatingLanguageToggle';
+import './App.css';
 
 function App() {
   return (

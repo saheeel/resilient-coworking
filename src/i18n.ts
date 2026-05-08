@@ -320,7 +320,7 @@ i18n
             meeting_rooms: "Sitzungszimmer",
             location: "Standort",
             about_us: "Über uns",
-            contact_us: "Kontaktieren Sie uns"
+            contact_us: "Kontakt"
           },
           footer: {
             copyright: "© 2024 Resilient Coworking. Alle Rechte vorbehalten.",
@@ -576,7 +576,7 @@ i18n
               }
             },
             cta_title: "Bereit, unserer Community beizutreten?",
-            cta_btn: "Kontaktieren Sie uns"
+            cta_btn: "Kontakt"
           },
           location_page: {
             hero_title: "Standortübersicht.",
