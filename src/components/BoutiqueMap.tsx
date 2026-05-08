@@ -141,7 +141,7 @@ export default function BoutiqueMap() {
       </button>
 
       <MapContainer 
-        center={[47.371, 8.544]} 
+        center={[47.3644, 8.5492]} 
         zoom={15} 
         style={{ width: '100%', height: '100%' }}
         scrollWheelZoom={false}

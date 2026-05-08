@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useTranslation } from 'react-i18next';
+import BoutiqueMap from '../components/BoutiqueMap';
 
 export default function LocationOverview() {
   const { t } = useTranslation();
@@ -62,14 +63,7 @@ export default function LocationOverview() {
             boxShadow: '0 20px 40px rgba(0,0,0,0.1)' 
           }}
         >
-          <iframe 
-            src="https://www.google.com/maps?q=Kreuzstrasse+24,+8008+Zurich,+Switzerland&output=embed&t=k" 
-            style={{ border: 0, position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', filter: 'contrast(1.05)' }} 
-            allowFullScreen={false} 
-            loading="lazy" 
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Resilient Coworking Location"
-          ></iframe>
+          <BoutiqueMap />
         </motion.div>
       </section>
 

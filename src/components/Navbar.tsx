@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import FloatingLanguageToggle from './FloatingLanguageToggle';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const { t, i18n } = useTranslation();
@@ -18,23 +20,46 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close menu on route change
+  const closeMenu = () => {
+    if (!mobileMenuOpen) return;
+    setIsClosing(true);
+    setTimeout(() => {
+      setMobileMenuOpen(false);
+      setIsClosing(false);
+    }, 400);
+  };
+
+  // Close menu gracefully on route change
   useEffect(() => {
-    setMobileMenuOpen(false);
+    if (mobileMenuOpen && !isClosing) {
+      closeMenu();
+    }
   }, [location]);
+
+  // Disable body scroll when menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
 
   return (
     <header className={`header ${scrolled || !isHomePage || mobileMenuOpen ? 'scrolled' : ''}`}>
-      <div className="header-inner">
+      <div className={`header-inner ${mobileMenuOpen ? 'menu-active' : ''}`}>
         <Link to="/" className="logo-link">
           <img src="/resilientlogo.png" alt="Resilient Studios" className="logo-img" />
         </Link>
-        <nav className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''}`}>
-          <NavLink to="/open-space" className="nav-link" onClick={() => setMobileMenuOpen(false)}>{t('nav.open_space')}</NavLink>
-          <NavLink to="/offices" className="nav-link" onClick={() => setMobileMenuOpen(false)}>{t('nav.private_offices')}</NavLink>
-          <NavLink to="/meeting-rooms" className="nav-link" onClick={() => setMobileMenuOpen(false)}>{t('nav.meeting_rooms')}</NavLink>
-          <NavLink to="/location" className="nav-link" onClick={() => setMobileMenuOpen(false)}>{t('nav.location')}</NavLink>
-          <NavLink to="/about" className="nav-link" onClick={() => setMobileMenuOpen(false)}>{t('nav.about_us')}</NavLink>
+        <nav className={`nav-links ${mobileMenuOpen ? 'mobile-open' : ''} ${isClosing ? 'mobile-closing' : ''}`}>
+          <NavLink to="/open-space" className="nav-link" onClick={closeMenu}>{t('nav.open_space')}</NavLink>
+          <NavLink to="/offices" className="nav-link" onClick={closeMenu}>{t('nav.private_offices')}</NavLink>
+          <NavLink to="/meeting-rooms" className="nav-link" onClick={closeMenu}>{t('nav.meeting_rooms')}</NavLink>
+          <NavLink to="/location" className="nav-link" onClick={closeMenu}>{t('nav.location')}</NavLink>
+          <NavLink to="/about" className="nav-link" onClick={closeMenu}>{t('nav.about_us')}</NavLink>
           
 
           {/* Mobile Language Toggle */}
@@ -82,7 +107,7 @@ export default function Navbar() {
               textTransform: 'uppercase',
               letterSpacing: '0.1em'
             }} 
-            onClick={() => setMobileMenuOpen(false)}
+            onClick={closeMenu}
           >
             {t('nav.contact_us')}
           </Link>
@@ -92,9 +117,12 @@ export default function Navbar() {
           <Link to="/contact" className="btn btn-primary btn-sm desktop-only-btn" style={{ textDecoration: 'none' }}>
             {t('nav.contact_us')}
           </Link>
+          <div className="desktop-only-toggle">
+            <FloatingLanguageToggle />
+          </div>
           <button 
             className="mobile-menu-btn" 
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            onClick={() => mobileMenuOpen ? closeMenu() : setMobileMenuOpen(true)}
             style={{ position: 'relative', zIndex: 100 }}
           >
             {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}

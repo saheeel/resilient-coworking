@@ -42,17 +42,13 @@ export default function FloatingLanguageToggle() {
       onClick={toggleLanguage}
       className="desktop-only-toggle"
       style={{
-        position: 'fixed',
-        top: '1.5rem',
-        right: '2.5rem',
-        zIndex: 9999,
         background: 'rgba(255, 255, 255, 0.15)',
         backdropFilter: 'blur(12px)',
         WebkitBackdropFilter: 'blur(12px)',
         border: '1px solid rgba(255, 255, 255, 0.2)',
-        width: '54px',
-        height: '54px',
-        borderRadius: '16px',
+        width: '40px',
+        height: '40px',
+        borderRadius: '50%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
